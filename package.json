@@ -1,0 +1,44 @@
+{
+  "name": "brutils-cli",
+  "version": "0.1.0",
+  "description": "A modular command line toolkit with generators, validators, formatters, cryptography utilities, string tools and other developer helpers.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "typecheck": "tsc --noEmit",
+    "cpf:generate": "tsx scripts/cpf/generate.ts",
+    "cpf:validate": "tsx scripts/cpf/validate.ts",
+    "cnpj:generate": "tsx scripts/cnpj/generate.ts",
+    "cnpj:validate": "tsx scripts/cnpj/validate.ts",
+    "cep:generate": "tsx scripts/cep/generate.ts",
+    "cep:validate": "tsx scripts/cep/validate.ts",
+    "credit-card:generate": "tsx scripts/credit-card/generate.ts",
+    "credit-card:validate": "tsx scripts/credit-card/validate.ts",
+    "credit-card:detect": "tsx scripts/credit-card/detect.ts"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.20.0",
+    "@types/node": "^24.0.0",
+    "eslint": "^9.20.1",
+    "prettier": "^3.5.0",
+    "tsup": "^8.4.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.24.0",
+    "vitest": "^3.0.0"
+  }
+}
