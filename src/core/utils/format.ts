@@ -8,3 +8,7 @@ export function formatCNPJ(value: string): string {
     "$1.$2.$3/$4-$5"
   );
 }
+
+export function formatCEP(value: string): string {
+  return value.replace(/(\d{5})(\d{3})/, "$1-$2");
+}

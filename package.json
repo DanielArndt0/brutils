@@ -29,7 +29,16 @@
     "random-number:generate": "tsx scripts/random-number/generate.ts",
     "number-picker:run": "tsx scripts/number-picker/run.ts",
     "zip:run": "tsx scripts/zip/run.ts",
-    "unzip:run": "tsx scripts/unzip/run.ts"
+    "unzip:run": "tsx scripts/unzip/run.ts",
+    "cpf:format": "tsx scripts/cpf/format.ts",
+    "cpf:strip": "tsx scripts/cpf/strip.ts",
+    "cpf:mask": "tsx scripts/cpf/mask.ts",
+    "cnpj:format": "tsx scripts/cnpj/format.ts",
+    "cnpj:strip": "tsx scripts/cnpj/strip.ts",
+    "cnpj:mask": "tsx scripts/cnpj/mask.ts",
+    "cep:format": "tsx scripts/cep/format.ts",
+    "cep:strip": "tsx scripts/cep/strip.ts",
+    "cep:mask": "tsx scripts/cep/mask.ts"
   },
   "engines": {
     "node": ">=18"

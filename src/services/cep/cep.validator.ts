@@ -1,18 +1,10 @@
-import type { ValidationResult } from "../../core/types/common.types.js";
-import { onlyDigits } from "../../core/utils/digits.js";
-
-function formatCEP(value: string): string {
-  return value.replace(/(\d{5})(\d{3})/, "$1-$2");
-}
-
-export function validateCEP(value: string): ValidationResult {
-  const digits = onlyDigits(value);
-
-  const isValid = digits.length === 8;
-
-  return {
-    isValid,
-    value: digits,
-    formatted: isValid ? formatCEP(digits) : undefined
-  };
+import { allDigitsEqual } from "../../core/utils/digits.js";
+import { formatCEP } from "../../core/utils/format.js";
+import { normalizeCEP } from "./cep.shared.js";
+import type { CEPValidateOptions, CEPValidationResult } from "./cep.types.js";
+export function validateCEP(value: string, options: CEPValidateOptions = {}): CEPValidationResult {
+  const digits = normalizeCEP(value);
+  const hasValidLength = digits.length === 8;
+  const passesStrictRules = !options.strict || !allDigitsEqual(digits);
+  return { isValid: hasValidLength && passesStrictRules, value: digits, formatted: hasValidLength ? formatCEP(digits) : undefined };
 }

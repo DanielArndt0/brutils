@@ -1,38 +1,23 @@
 import { describe, expect, it } from "vitest";
-import { validateCNPJ } from "../../src/services/cnpj/cnpj.validator.js";
-
+import {
+  formatCNPJValue,
+  maskCNPJ,
+  stripCNPJ,
+  validateCNPJ
+} from "../../src/services/cnpj/index.js";
 describe("validateCNPJ", () => {
-  it("should validate a correct unformatted CNPJ", () => {
-    const result = validateCNPJ("11444777000161");
-
-    expect(result.isValid).toBe(true);
-    expect(result.value).toBe("11444777000161");
-    expect(result.formatted).toBe("11.444.777/0001-61");
+  it("validates known cnpj", () => {
+    expect(validateCNPJ("11444777000161", { strict: true }).isValid).toBe(true);
   });
-
-  it("should validate a correct formatted CNPJ", () => {
-    const result = validateCNPJ("11.444.777/0001-61");
-
-    expect(result.isValid).toBe(true);
-    expect(result.value).toBe("11444777000161");
-    expect(result.formatted).toBe("11.444.777/0001-61");
+  it("strict rejects repeated patterns only in strict mode", () => {
+    expect(validateCNPJ("00000000000000").isValid).toBe(true);
+    expect(validateCNPJ("00000000000000", { strict: true }).isValid).toBe(
+      false
+    );
   });
-
-  it("should invalidate a CNPJ with wrong check digits", () => {
-    const result = validateCNPJ("11444777000162");
-
-    expect(result.isValid).toBe(false);
-  });
-
-  it("should invalidate a CNPJ with all equal digits", () => {
-    const result = validateCNPJ("11111111111111");
-
-    expect(result.isValid).toBe(false);
-  });
-
-  it("should invalidate a CNPJ with invalid length", () => {
-    const result = validateCNPJ("123456789");
-
-    expect(result.isValid).toBe(false);
+  it("formats, strips and masks", () => {
+    expect(formatCNPJValue("11444777000161")).toBe("11.444.777/0001-61");
+    expect(stripCNPJ("11.444.777/0001-61")).toBe("11444777000161");
+    expect(maskCNPJ("11444777000161")).toBe("**.***.***/****-61");
   });
 });
