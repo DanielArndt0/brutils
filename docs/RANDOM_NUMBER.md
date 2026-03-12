@@ -16,80 +16,21 @@ npm run random-number:generate
 
 ## Flags
 
-### `--min`
-Optional minimum value.
-
-Example:
-```bash
-npm run random-number:generate -- --min 1
-```
-
-### `--max`
-Optional maximum value.
-
-Example:
-```bash
-npm run random-number:generate -- --max 100
-```
-
-### `--count`
-Number of values to generate.
-
-Example:
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10
-```
-
-### `--sorted`
-Sorts the output in ascending order.
-
-Example:
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10 --sorted
-```
-
-### `--unique`
-Forces unique values.
-
-Example:
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10 --unique
-```
-
-### `--format`
-Controls output formatting.
-
-Accepted values:
-- `plain`
-- `json`
-- `csv`
-
-Examples:
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10 --format plain
-npm run random-number:generate -- --min 1 --max 100 --count 10 --format json
-npm run random-number:generate -- --min 1 --max 100 --count 10 --format csv
-```
+| Flag | Type | Required | Description | Example |
+|---|---|---|---|---|
+| `--min` | integer | No | Optional minimum value. | `npm run random-number:generate -- --min 1` |
+| `--max` | integer | No | Optional maximum value. | `npm run random-number:generate -- --max 100` |
+| `--count` | integer | No | Number of values to generate. | `npm run random-number:generate -- --min 1 --max 100 --count 10` |
+| `--sorted` | boolean | No | Sorts the output in ascending order. | `npm run random-number:generate -- --min 1 --max 100 --count 10 --sorted` |
+| `--unique` | boolean | No | Forces unique values. | `npm run random-number:generate -- --min 1 --max 100 --count 10 --unique` |
+| `--format` | string | No | Controls output formatting. | `plain`, `json`, `csv` |
 
 ## Combined examples
 
-Generate 50 numbers between 1 and 100:
 ```bash
 npm run random-number:generate -- --min 1 --max 100 --count 50
-```
-
-Generate 50 unique numbers between 1 and 100:
-```bash
 npm run random-number:generate -- --min 1 --max 100 --count 50 --unique
-```
-
-Generate 50 sorted numbers between 1 and 100:
-```bash
 npm run random-number:generate -- --min 1 --max 100 --count 50 --sorted
-```
-
-Generate JSON output:
-```bash
 npm run random-number:generate -- --min 1 --max 100 --count 10 --format json
 ```
 

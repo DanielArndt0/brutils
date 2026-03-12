@@ -26,20 +26,9 @@ npm run cpf:validate -- 52998224725
 
 ## Flags
 
-### `--formatted`
-Used with `cpf:generate`.
-
-When enabled, the generated CPF is returned with punctuation.
-
-Example:
-```bash
-npm run cpf:generate -- --formatted
-```
-
-Output example:
-```text
-529.982.247-25
-```
+| Flag | Command | Type | Required | Description | Example |
+|---|---|---|---|---|---|
+| `--formatted` | `cpf:generate` | boolean | No | Returns the generated CPF with punctuation. | `npm run cpf:generate -- --formatted` |
 
 ## Notes
 

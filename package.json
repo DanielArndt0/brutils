@@ -27,13 +27,16 @@
     "credit-card:validate": "tsx scripts/credit-card/validate.ts",
     "credit-card:detect": "tsx scripts/credit-card/detect.ts",
     "random-number:generate": "tsx scripts/random-number/generate.ts",
-    "number-picker:run": "tsx scripts/number-picker/run.ts"
+    "number-picker:run": "tsx scripts/number-picker/run.ts",
+    "zip:run": "tsx scripts/zip/run.ts",
+    "unzip:run": "tsx scripts/unzip/run.ts"
   },
   "engines": {
     "node": ">=18"
   },
   "devDependencies": {
     "@eslint/js": "^9.20.0",
+    "@types/archiver": "^7.0.0",
     "@types/node": "^24.0.0",
     "eslint": "^9.20.1",
     "prettier": "^3.5.0",
@@ -42,5 +45,10 @@
     "typescript": "^5.8.0",
     "typescript-eslint": "^8.24.0",
     "vitest": "^3.0.0"
+  },
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "extract-zip": "^2.0.1",
+    "fast-glob": "^3.3.3"
   }
 }

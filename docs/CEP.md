@@ -26,20 +26,9 @@ npm run cep:validate -- 86010190
 
 ## Flags
 
-### `--formatted`
-Used with `cep:generate`.
-
-When enabled, the generated CEP is returned with punctuation.
-
-Example:
-```bash
-npm run cep:generate -- --formatted
-```
-
-Output example:
-```text
-86010-190
-```
+| Flag | Command | Type | Required | Description | Example |
+|---|---|---|---|---|---|
+| `--formatted` | `cep:generate` | boolean | No | Returns the generated CEP with punctuation. | `npm run cep:generate -- --formatted` |
 
 ## Notes
 

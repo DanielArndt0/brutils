@@ -1,7 +1,7 @@
 # Brutils
 
 **brutils** is a modular command-line toolkit designed to provide useful utilities for developers.
-It includes generators and validators for common data formats used in development, testing, and automation workflows.
+It includes generators, validators, number utilities and file utilities for development, testing and automation workflows.
 
 The project is designed with a **modular service architecture**, allowing each tool to be used independently and later integrated into a full CLI interface.
 
@@ -18,6 +18,8 @@ Currently implemented utilities:
 - Credit card generator
 - Random number generator
 - Number picker
+- ZIP creation
+- ZIP extraction planning and execution
 
 ## Validators
 - CPF validator
@@ -31,6 +33,12 @@ Currently implemented utilities:
 - CVV generation
 - Card brand detection
 - Validation using the **Luhn algorithm**
+
+## File Utilities
+- Create `.zip` files from files and directories
+- Extract `.zip` files to output directories
+- Dry-run support for ZIP and UNZIP workflows
+- Output path resolution helpers
 
 ---
 
@@ -49,6 +57,8 @@ src/
     credit-card/
     random-number/
     number-picker/
+    zip/
+    unzip/
 
 scripts/
   cpf/
@@ -57,6 +67,8 @@ scripts/
   credit-card/
   random-number/
   number-picker/
+  zip/
+  unzip/
 
 tests/
 docs/
@@ -92,6 +104,7 @@ Example:
 
 ```bash
 npm run number-picker:run -- --min 1 --max 100
+npm run zip:run -- ./dist
 ```
 
 ---
@@ -240,6 +253,45 @@ Detailed documentation:
 
 ---
 
+## ZIP
+
+Create a zip from a source:
+```bash
+npm run zip:run -- ./dist
+```
+
+Create a zip with explicit output:
+```bash
+npm run zip:run -- ./dist ./artifacts/build.zip
+```
+
+Create a zip with flags:
+```bash
+npm run zip:run -- ./dist --contents-only -x "node_modules/**" -x ".git/**" -f
+```
+
+Detailed documentation:
+- [ZIP overview](docs/ZIP.md)
+
+---
+
+## UNZIP
+
+Extract a zip file:
+```bash
+npm run unzip:run -- ./build.zip
+```
+
+Extract to an explicit output directory:
+```bash
+npm run unzip:run -- ./build.zip ./output
+```
+
+Detailed documentation:
+- [UNZIP overview](docs/UNZIP.md)
+
+---
+
 # Documentation Index
 
 Detailed command and flag documentation is available in the `docs/` folder:
@@ -250,6 +302,8 @@ Detailed command and flag documentation is available in the `docs/` folder:
 - [Credit Card](docs/CREDIT_CARD.md)
 - [Random Number](docs/RANDOM_NUMBER.md)
 - [Number Picker](docs/NUMBER_PICKER.md)
+- [ZIP](docs/ZIP.md)
+- [UNZIP](docs/UNZIP.md)
 
 ---
 

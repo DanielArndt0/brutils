@@ -8,3 +8,5 @@ export * from "./cep/index.js";
 export * from "./credit-card/index.js";
 export * from "./random-number/index.js";
 export * from "./number-picker/index.js";
+export * from "./zip/index.js";
+export * from "./unzip/index.js";
