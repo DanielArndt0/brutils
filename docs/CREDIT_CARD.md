@@ -2,7 +2,7 @@
 
 ## Overview
 
-The credit card module supports number generation, brand detection and validation.
+The credit card module generates synthetic card test data, detects card brands and validates card payloads.
 
 ## Supported Brands
 
@@ -11,64 +11,39 @@ The credit card module supports number generation, brand detection and validatio
 - `amex`
 - `elo`
 
-## Available Commands
-
-### Generate a credit card
+## CLI Commands
 
 ```bash
-npm run credit-card:generate -- --brand visa
+brutils credit-card generate --brand visa
+brutils credit-card generate --brand amex --formatted
+brutils credit-card detect 4111111111111111
+
+brutils credit-card validate --number 4111111111111111 --expiry 12/30 --cvv 123
+brutils credit-card validate --number 4111111111111111 --expiry-month 12 --expiry-year 30 --cvv 123
 ```
 
-### Generate a formatted credit card
+## Actions
 
-```bash
-npm run credit-card:generate -- --brand amex --formatted
-```
-
-### Detect card brand
-
-```bash
-npm run credit-card:detect -- 4111111111111111
-```
-
-### Validate a credit card payload
-
-```bash
-npm run credit-card:validate -- --number 4111111111111111 --expiry 12/30 --cvv 123
-```
+| Action     | Usage                                                                        | Description                            |
+| ---------- | ---------------------------------------------------------------------------- | -------------------------------------- |
+| `generate` | `brutils credit-card generate [flags]`                                       | Generate synthetic card test data.     |
+| `validate` | `brutils credit-card validate --number <value> --cvv <value> [expiry flags]` | Validate card number, expiry and CVV.  |
+| `detect`   | `brutils credit-card detect <number>`                                        | Detect the card brand from the number. |
 
 ## Flags
 
-### Generate command flags
-
-| Flag          | Command                | Type    | Required | Description                                    | Accepted values / Example                                  |
-| ------------- | ---------------------- | ------- | -------- | ---------------------------------------------- | ---------------------------------------------------------- |
-| `--brand`     | `credit-card:generate` | string  | No       | Selects the card brand to generate.            | `visa`, `mastercard`, `amex`, `elo`                        |
-| `--formatted` | `credit-card:generate` | boolean | No       | Formats the generated card number with spaces. | `npm run credit-card:generate -- --brand visa --formatted` |
-
-### Validate command flags
-
-| Flag       | Command                | Type   | Required | Description                         | Example                     |
-| ---------- | ---------------------- | ------ | -------- | ----------------------------------- | --------------------------- |
-| `--number` | `credit-card:validate` | string | Yes      | The credit card number to validate. | `--number 4111111111111111` |
-| `--expiry` | `credit-card:validate` | string | Yes      | The expiry date in `MM/YY` format.  | `--expiry 12/30`            |
-| `--cvv`    | `credit-card:validate` | string | Yes      | The CVV code.                       | `--cvv 123`                 |
-
-## Output example
-
-```text
-{
-  brand: 'visa',
-  number: '4111 1111 1111 1111',
-  expiryMonth: '08',
-  expiryYear: '28',
-  expiry: '08/28',
-  cvv: '123'
-}
-```
+| Flag                            | Applies to | Type    | Description                                        |
+| ------------------------------- | ---------- | ------- | -------------------------------------------------- |
+| `--brand <brand>`               | `generate` | string  | Choose a specific brand to generate.               |
+| `--formatted`                   | `generate` | boolean | Return the card number with spaces every 4 digits. |
+| `--expiry-years-ahead <number>` | `generate` | integer | Maximum years ahead for generated expiry.          |
+| `--number <value>`              | `validate` | string  | Card number to validate.                           |
+| `--expiry <value>`              | `validate` | string  | Expiry in `MM/YY` format.                          |
+| `--expiry-month <value>`        | `validate` | string  | Expiry month.                                      |
+| `--expiry-year <value>`         | `validate` | string  | Expiry year.                                       |
+| `--cvv <value>`                 | `validate` | string  | CVV code to validate.                              |
 
 ## Notes
 
-- Validation uses the **Luhn algorithm** for card numbers.
-- CVV length depends on the brand.
-- Brand detection is supported for the currently configured brands.
+- `brutils credit-card --help` shows module-level usage and examples.
+- Validation checks number format, brand detection, expiry and CVV consistency.

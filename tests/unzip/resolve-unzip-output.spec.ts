@@ -1,4 +1,3 @@
-import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { resolveUnzipOutputPath } from "../../src/services/unzip/resolve-unzip-output.js";
 

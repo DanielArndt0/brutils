@@ -2,87 +2,56 @@
 
 ## Overview
 
-The random utilities cover random integer generation, float generation, list picking, item shuffling, dice rolling, coin flipping, and numeric range picking.
+The random utilities cover integer generation, float generation, list picking, item shuffling, dice rolling, coin flipping and seeded deterministic output.
 
-For backward compatibility, `random-number:generate` remains available as an alias for integer generation and `number-picker:run` remains available for single integer range picking.
-
-## Available Commands
-
-### Integer generation
+## Commands
 
 ```bash
-npm run random-number:int -- --min 1 --max 100 --count 5
-npm run random-number:generate -- --min 1 --max 100 --count 5
-```
+brutils random-number int --min 1 --max 100 --count 5 --sorted
+brutils random-number float --min 0 --max 1 --count 3 --precision 4
+brutils random-number pick --items "red,blue,green" --count 2 --unique
+brutils random-number shuffle --file ./items.txt
+brutils random-number dice --faces 20 --count 2
+brutils random-number coin --seed 42
 
-### Float generation
-
-```bash
-npm run random-number:float -- --min 1 --max 10 --count 3 --precision 2
-```
-
-### Pick items from a list
-
-```bash
-npm run random-number:pick -- --items "apple,banana,orange" --count 2
-npm run random-number:pick -- --file ./items.txt --count 3 --unique
-```
-
-### Pick one number in a range
-
-```bash
-npm run number-picker:run -- --min 1 --max 100
-npm run random-number:pick-number -- --min 1 --max 100
-```
-
-### Shuffle items
-
-```bash
-npm run random-number:shuffle -- --items "apple,banana,orange"
-```
-
-### Roll dice
-
-```bash
-npm run random-number:dice -- --faces 20 --count 3
-```
-
-### Flip a coin
-
-```bash
-npm run random-number:coin
+brutils number-picker run --min 1 --max 60 --seed 42
 ```
 
 ## Actions
 
-| Action        | Script                                     | Description                                  |
-| ------------- | ------------------------------------------ | -------------------------------------------- |
-| `int`         | `npm run random-number:int -- [flags]`     | Generates one or many random integers.       |
-| `float`       | `npm run random-number:float -- [flags]`   | Generates one or many random floats.         |
-| `pick`        | `npm run random-number:pick -- [flags]`    | Picks one or more random items from a list.  |
-| `pick-number` | `npm run number-picker:run -- [flags]`     | Picks a single integer from a numeric range. |
-| `shuffle`     | `npm run random-number:shuffle -- [flags]` | Shuffles a list of items.                    |
-| `dice`        | `npm run random-number:dice -- [flags]`    | Simulates dice rolls.                        |
-| `coin`        | `npm run random-number:coin -- [flags]`    | Returns heads or tails.                      |
+| Command                         | Usage                                                                  | Description                      |
+| ------------------------------- | ---------------------------------------------------------------------- | -------------------------------- |
+| `brutils random-number int`     | `brutils random-number int [flags]`                                    | Generate integer batches.        |
+| `brutils random-number float`   | `brutils random-number float [flags]`                                  | Generate floating-point batches. |
+| `brutils random-number pick`    | `brutils random-number pick --items <csv> or --file <path> [flags]`    | Pick one or more items.          |
+| `brutils random-number shuffle` | `brutils random-number shuffle --items <csv> or --file <path> [flags]` | Shuffle a list of items.         |
+| `brutils random-number dice`    | `brutils random-number dice [flags]`                                   | Roll one or more dice.           |
+| `brutils random-number coin`    | `brutils random-number coin [flags]`                                   | Flip a coin once.                |
+| `brutils number-picker run`     | `brutils number-picker run [flags]`                                    | Pick one integer in a range.     |
 
-## Flags
+## Shared flags
 
-| Flag              | Applies to                     | Type    | Description                                  | Example                                                              |
-| ----------------- | ------------------------------ | ------- | -------------------------------------------- | -------------------------------------------------------------------- |
-| `--min <n>`       | `int`, `float`, `pick-number`  | number  | Minimum value.                               | `npm run random-number:int -- --min 1 --max 10`                      |
-| `--max <n>`       | `int`, `float`, `pick-number`  | number  | Maximum value.                               | `npm run number-picker:run -- --min 1 --max 10`                      |
-| `--count <n>`     | `int`, `float`, `pick`, `dice` | integer | Number of results to generate.               | `npm run random-number:dice -- --count 3`                            |
-| `--sorted`        | `int`, `float`                 | boolean | Sorts output in ascending order.             | `npm run random-number:float -- --min 1 --max 10 --count 5 --sorted` |
-| `--unique`        | `int`, `pick`                  | boolean | Avoids duplicates when possible.             | `npm run random-number:pick -- --items "a,b,c" --count 2 --unique`   |
-| `--precision <n>` | `float`                        | integer | Decimal precision for floating-point output. | `npm run random-number:float -- --precision 3`                       |
-| `--items <csv>`   | `pick`, `shuffle`              | string  | Comma-separated source items.                | `npm run random-number:shuffle -- --items "red,green,blue"`          |
-| `--file <path>`   | `pick`, `shuffle`              | string  | Reads items from a file, one per line.       | `npm run random-number:pick -- --file ./items.txt`                   |
-| `--faces <n>`     | `dice`                         | integer | Number of sides on the die.                  | `npm run random-number:dice -- --faces 12`                           |
-| `--seed <n>`      | all random actions             | integer | Makes output reproducible.                   | `npm run random-number:int -- --seed 42`                             |
+| Flag              | Applies to           | Type    | Description                         |
+| ----------------- | -------------------- | ------- | ----------------------------------- | ------ | -------------------------- |
+| `--seed <number>` | most random commands | integer | Make output deterministic.          |
+| `--format <plain  | json                 | csv>`   | integer, float, pick, shuffle, dice | string | Control CLI output format. |
+
+## Action-specific flags
+
+| Flag                   | Applies to                | Type    | Description                           |
+| ---------------------- | ------------------------- | ------- | ------------------------------------- |
+| `--min <number>`       | int, float, number-picker | number  | Minimum value.                        |
+| `--max <number>`       | int, float, number-picker | number  | Maximum value.                        |
+| `--count <number>`     | int, float, pick, dice    | integer | Number of results to generate.        |
+| `--sorted`             | int, float                | boolean | Sort output in ascending order.       |
+| `--unique`             | int, pick                 | boolean | Avoid duplicates when possible.       |
+| `--precision <number>` | float                     | integer | Decimal precision for floats.         |
+| `--items <csv>`        | pick, shuffle             | string  | Comma-separated source items.         |
+| `--file <path>`        | pick, shuffle             | string  | Load items from a file, one per line. |
+| `--faces <number>`     | dice                      | integer | Number of sides on the die.           |
 
 ## Notes
 
+- `brutils rand ...` works as an alias for `brutils random-number ...`.
+- `brutils random-number generate ...` is an alias for `brutils random-number int ...`.
 - `--items` and `--file` are mutually exclusive.
-- `--seed` provides deterministic output for testing and fixtures.
-- `random-number:generate` remains an alias for integer generation.
-- `number-picker:run` remains available for single range-based number picking.

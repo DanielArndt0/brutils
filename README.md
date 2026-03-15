@@ -1,68 +1,180 @@
 # Brutils
 
-**brutils** is a modular command-line toolkit designed to provide useful utilities for developers.
-It includes generators, validators, number utilities and file utilities for development, testing and automation workflows.
+**Brutils** is a modular command-line toolkit with practical utilities for Brazilian and general developer workflows.
 
-The project is designed with a **modular service architecture**, allowing each tool to be used independently and later integrated into a full CLI interface.
+It includes:
 
----
+- CPF, CNPJ and CEP generation, validation, formatting, stripping and masking
+- credit card test data generation, validation and brand detection
+- random integers, floats, picks, shuffles, dice rolls and coin flips
+- number picking with deterministic seeds
+- ZIP creation, archive listing, archive testing and ZIP extraction
 
-# Features
+The project keeps a modular service architecture internally, but now ships with a real CLI entrypoint:
 
-Currently implemented utilities:
-
-## Generators
-
-- CPF generator
-- CNPJ generator
-- CEP generator
-- Credit card generator
-- Random number generator
-- Number picker
-- ZIP creation
-- ZIP extraction planning and execution
-
-## Validators
-
-- CPF validator
-- CNPJ validator
-- CEP validator
-- Credit card validator
-
-## Credit Card Utilities
-
-- Card number generation
-- Expiry date generation
-- CVV generation
-- Card brand detection
-- Validation using the **Luhn algorithm**
-
-## File Utilities
-
-- Create `.zip` files from files and directories
-- Extract `.zip` files to output directories
-- Dry-run support for ZIP and UNZIP workflows
-- Output path resolution helpers
+```bash
+brutils --help
+```
 
 ---
 
-# Project Structure
+## Installation
+
+### Local project setup
+
+```bash
+npm install
+npm run build
+npm link
+```
+
+After linking, the `brutils` command will be available on your machine for local development.
+
+### Package usage
+
+If you publish this package to GitHub Packages, install it with your configured registry and then use:
+
+```bash
+brutils --help
+```
+
+---
+
+## Quick Start
+
+```bash
+brutils cpf generate --formatted
+brutils cnpj validate 11.444.777/0001-61 --strict
+brutils cep mask 86010190 --mask "###**-***"
+
+brutils credit-card generate --brand visa --formatted
+brutils credit-card detect 4111111111111111
+
+brutils random-number int --min 1 --max 60 --count 6 --unique --sorted
+brutils random-number pick --items "red,blue,green" --count 2
+
+brutils number-picker run --min 1 --max 100 --seed 42
+
+brutils zip create ./dist --out ./artifacts/dist.zip
+brutils unzip extract ./artifacts/dist.zip --out ./restored
+```
+
+---
+
+## CLI Structure
+
+```text
+brutils
+├── cpf
+│   ├── generate
+│   ├── validate
+│   ├── format
+│   ├── strip
+│   └── mask
+├── cnpj
+│   ├── generate
+│   ├── validate
+│   ├── format
+│   ├── strip
+│   └── mask
+├── cep
+│   ├── generate
+│   ├── validate
+│   ├── format
+│   ├── strip
+│   └── mask
+├── credit-card
+│   ├── generate
+│   ├── validate
+│   └── detect
+├── random-number
+│   ├── int
+│   ├── float
+│   ├── pick
+│   ├── shuffle
+│   ├── dice
+│   └── coin
+├── number-picker
+│   └── run
+├── zip
+│   ├── create
+│   ├── list
+│   └── test
+└── unzip
+    ├── extract
+    ├── list
+    └── test
+```
+
+Aliases currently supported:
+
+- `brutils card ...` for `brutils credit-card ...`
+- `brutils rand ...` for `brutils random-number ...`
+- `brutils zip run ...` for `brutils zip create ...`
+- `brutils unzip run ...` for `brutils unzip extract ...`
+
+---
+
+## Built-in Help
+
+The CLI includes module-level and action-level help.
+
+Examples:
+
+```bash
+brutils --help
+brutils cpf --help
+brutils cpf generate --help
+brutils random-number --help
+brutils zip create --help
+```
+
+---
+
+## Development Commands
+
+The legacy `npm run ...` scripts are still kept for local development and backwards compatibility.
+
+Main development commands:
+
+```bash
+npm run cli -- --help
+npm run build
+npm run lint
+npm run typecheck
+npm run test:unit
+```
+
+Examples using the legacy scripts:
+
+```bash
+npm run cpf:generate -- --formatted
+npm run random-number:int -- --min 1 --max 10 --count 3
+npm run zip:create -- ./dist --out ./artifacts/dist.zip
+```
+
+---
+
+## Documentation
+
+- [CPF](docs/CPF.md)
+- [CNPJ](docs/CNPJ.md)
+- [CEP](docs/CEP.md)
+- [Credit Card](docs/CREDIT_CARD.md)
+- [Random Utilities](docs/RANDOM_NUMBER.md)
+- [Number Picker](docs/NUMBER_PICKER.md)
+- [ZIP](docs/ZIP.md)
+- [UNZIP](docs/UNZIP.md)
+
+---
+
+## Project Structure
 
 ```text
 src/
+  cli.ts
   core/
-    utils/
-    types/
-
   services/
-    cpf/
-    cnpj/
-    cep/
-    credit-card/
-    random-number/
-    number-picker/
-    zip/
-    unzip/
 
 scripts/
   cpf/
@@ -76,308 +188,25 @@ scripts/
 
 tests/
 docs/
-```
-
-The project separates **core utilities**, **services**, **execution scripts**, and **tool documentation**, making it easier to scale and maintain.
-
----
-
-# Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/DanielArndt0/brutils.git
-```
-
-Install dependencies:
-
-```bash
-npm install
+.github/workflows/
 ```
 
 ---
 
-# Running the Tools
+## CI/CD
 
-Currently the utilities are accessed using **npm scripts** that execute the service layer directly.
+This repository is prepared for three workflow layers:
 
-> Important: when passing flags to `npm run`, always use `--` before your custom flags.
+- **CI** for push and pull request validation
+- **Preview publish** on `main`, producing a `-dev.<run_number>` package version
+- **Release publish** on stable tags like `v0.2.0`
 
-Example:
-
-```bash
-npm run number-picker:run -- --min 1 --max 100
-npm run zip:run -- ./dist
-```
+The workflows live in `.github/workflows/`.
 
 ---
 
-# Quick Command Reference
-
-## CPF
-
-Generate:
-
-```bash
-npm run cpf:generate
-```
-
-Generate formatted:
-
-```bash
-npm run cpf:generate -- --formatted
-```
-
-Validate:
-
-```bash
-npm run cpf:validate -- 52998224725
-```
-
-Detailed documentation:
-
-- [CPF overview](docs/CPF.md)
-
----
-
-## CNPJ
-
-Generate:
-
-```bash
-npm run cnpj:generate
-```
-
-Generate formatted:
-
-```bash
-npm run cnpj:generate -- --formatted
-```
-
-Validate:
-
-```bash
-npm run cnpj:validate -- 11444777000161
-```
-
-Detailed documentation:
-
-- [CNPJ overview](docs/CNPJ.md)
-
----
-
-## CEP
-
-Generate:
-
-```bash
-npm run cep:generate
-```
-
-Generate formatted:
-
-```bash
-npm run cep:generate -- --formatted
-```
-
-Validate:
-
-```bash
-npm run cep:validate -- 86010190
-```
-
-Detailed documentation:
-
-- [CEP overview](docs/CEP.md)
-
----
-
-## Credit Card
-
-Generate:
-
-```bash
-npm run credit-card:generate -- --brand visa
-```
-
-Generate formatted:
-
-```bash
-npm run credit-card:generate -- --brand amex --formatted
-```
-
-Detect brand:
-
-```bash
-npm run credit-card:detect -- 4111111111111111
-```
-
-Validate:
-
-```bash
-npm run credit-card:validate -- --number 4111111111111111 --expiry 12/30 --cvv 123
-```
-
-Detailed documentation:
-
-- [Credit card overview](docs/CREDIT_CARD.md)
-
----
-
-## Random Number
-
-Generate one random number:
-
-```bash
-npm run random-number:generate
-```
-
-Generate numbers in a range:
-
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10
-```
-
-Generate sorted values:
-
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10 --sorted
-```
-
-Generate unique values:
-
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10 --unique
-```
-
-Format output as JSON:
-
-```bash
-npm run random-number:generate -- --min 1 --max 100 --count 10 --format json
-```
-
-Detailed documentation:
-
-- [Random number overview](docs/RANDOM_NUMBER.md)
-
----
-
-## Number Picker
-
-Pick one number with defaults:
-
-```bash
-npm run number-picker:run
-```
-
-Pick one number in a range:
-
-```bash
-npm run number-picker:run -- --min 1 --max 100
-```
-
-Detailed documentation:
-
-- [Number picker overview](docs/NUMBER_PICKER.md)
-
----
-
-## ZIP
-
-Create a zip from a source:
-
-```bash
-npm run zip:run -- ./dist
-```
-
-Create a zip with explicit output:
-
-```bash
-npm run zip:run -- ./dist ./artifacts/build.zip
-```
-
-Create a zip with flags:
-
-```bash
-npm run zip:run -- ./dist --contents-only -x "node_modules/**" -x ".git/**" -f
-```
-
-Detailed documentation:
-
-- [ZIP overview](docs/ZIP.md)
-
----
-
-## UNZIP
-
-Extract a zip file:
-
-```bash
-npm run unzip:run -- ./build.zip
-```
-
-Extract to an explicit output directory:
-
-```bash
-npm run unzip:run -- ./build.zip ./output
-```
-
-Detailed documentation:
-
-- [UNZIP overview](docs/UNZIP.md)
-
----
-
-# Documentation Index
-
-Detailed command and flag documentation is available in the `docs/` folder:
-
-- [CPF](docs/CPF.md)
-- [CNPJ](docs/CNPJ.md)
-- [CEP](docs/CEP.md)
-- [Credit Card](docs/CREDIT_CARD.md)
-- [Random Number](docs/RANDOM_NUMBER.md)
-- [Number Picker](docs/NUMBER_PICKER.md)
-- [ZIP](docs/ZIP.md)
-- [UNZIP](docs/UNZIP.md)
-
----
-
-# Development
-
-Run tests:
-
-```bash
-npm run test
-```
-
-Watch tests:
-
-```bash
-npm run test:watch
-```
-
-Run TypeScript checks:
-
-```bash
-npm run typecheck
-```
-
-Run linter:
-
-```bash
-npm run lint
-```
-
-Format code:
-
-```bash
-npm run format
-```
-
----
-
-# Future CLI
-
-The current project structure is designed to support a full CLI interface in future versions. The service layer implemented today will be used as the foundation for the final command-line experience.
+## Notes
+
+- CPF, CNPJ, CEP and credit card generators produce synthetic values for testing and development.
+- ZIP and UNZIP helpers support dry-run planning, listing and testing.
+- Seeded random commands are useful for reproducible fixtures and test scenarios.

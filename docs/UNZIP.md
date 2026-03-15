@@ -4,57 +4,39 @@
 
 The UNZIP module extracts `.zip` files into a destination directory and can also list or test archive contents.
 
-## Available Commands
-
-### Extract a zip archive
+## CLI Commands
 
 ```bash
-npm run unzip:extract -- ./build.zip
-npm run unzip:run -- ./build.zip
-```
+brutils unzip extract ./build.zip
+brutils unzip extract ./build.zip ./output
+brutils unzip extract ./build.zip --out ./output --force
+brutils unzip extract ./build.zip --flat --match "**/*.txt"
 
-### List archive contents
-
-```bash
-npm run unzip:list -- ./build.zip
-```
-
-### Test archive readability
-
-```bash
-npm run unzip:test -- ./build.zip
+brutils unzip list ./build.zip
+brutils unzip test ./build.zip
 ```
 
 ## Actions
 
-| Action    | Script                                               | Description                    |
-| --------- | ---------------------------------------------------- | ------------------------------ |
-| `extract` | `npm run unzip:extract -- <source> [out] [options]`  | Extracts a zip file.           |
-| `list`    | `npm run unzip:list -- <source> [--match <pattern>]` | Lists zip contents.            |
-| `test`    | `npm run unzip:test -- <source> [--match <pattern>]` | Validates archive readability. |
-
-## Positional Arguments
-
-| Argument   | Applies to                | Required | Description                        | Example                                         |
-| ---------- | ------------------------- | -------- | ---------------------------------- | ----------------------------------------------- |
-| `<source>` | `extract`, `list`, `test` | Yes      | `.zip` file to inspect or extract. | `npm run unzip:extract -- ./build.zip`          |
-| `[out]`    | `extract`                 | No       | Destination directory.             | `npm run unzip:extract -- ./build.zip ./output` |
+| Action    | Usage                                             | Description               |
+| --------- | ------------------------------------------------- | ------------------------- |
+| `extract` | `brutils unzip extract <source> [out] [flags]`    | Extract a zip file.       |
+| `list`    | `brutils unzip list <source> [--match <pattern>]` | List archive contents.    |
+| `test`    | `brutils unzip test <source> [--match <pattern>]` | Test archive readability. |
 
 ## Flags
 
-| Flag                | Applies to                | Type    | Description                              | Example                                                   |
-| ------------------- | ------------------------- | ------- | ---------------------------------------- | --------------------------------------------------------- |
-| `-o, --out <dir>`   | `extract`                 | string  | Sets destination directory.              | `npm run unzip:extract -- ./build.zip --out ./output`     |
-| `-f, --force`       | `extract`                 | boolean | Overwrites destination if allowed.       | `npm run unzip:extract -- ./build.zip -f`                 |
-| `--dry-run`         | `extract`                 | boolean | Shows extraction plan only.              | `npm run unzip:extract -- ./build.zip --dry-run`          |
-| `-v, --verbose`     | `extract`, `list`, `test` | boolean | Detailed logs.                           | `npm run unzip:extract -- ./build.zip -v`                 |
-| `-q, --quiet`       | `extract`, `list`, `test` | boolean | Reduced output.                          | `npm run unzip:list -- ./build.zip -q`                    |
-| `--flat`            | `extract`                 | boolean | Extracts files without folder structure. | `npm run unzip:extract -- ./build.zip --flat`             |
-| `--match <pattern>` | `extract`, `list`, `test` | string  | Filters which entries are considered.    | `npm run unzip:extract -- ./build.zip --match "**/*.txt"` |
+| Flag                | Applies to                | Type    | Description                                      |
+| ------------------- | ------------------------- | ------- | ------------------------------------------------ |
+| `-o, --out <path>`  | `extract`                 | string  | Explicit output directory.                       |
+| `-f, --force`       | `extract`                 | boolean | Overwrite target directory if it already exists. |
+| `--dry-run`         | `extract`                 | boolean | Print the extraction plan only.                  |
+| `-v, --verbose`     | `extract`                 | boolean | Show verbose extraction logs.                    |
+| `-q, --quiet`       | `extract`, `list`, `test` | boolean | Suppress non-error output.                       |
+| `--flat`            | `extract`                 | boolean | Extract files without preserving nested folders. |
+| `--match <pattern>` | `extract`, `list`, `test` | string  | Filter which entries are considered.             |
 
 ## Notes
 
-- Use either positional `[out]` or `--out`, not both.
-- `unzip:run` remains available as an alias for `unzip:extract`.
+- `brutils unzip run ...` works as an alias for `brutils unzip extract ...`.
 - Only `.zip` files are supported.
-- If no output directory is provided, the default output directory is based on the zip file name.

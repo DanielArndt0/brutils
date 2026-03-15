@@ -96,7 +96,7 @@ export function getPositionalArgs(
 }
 
 export function printLines(values: Array<string | number>): void {
-  console.log(values.join(""));
+  console.log(values.join("\n"));
 }
 
 export function printStructured(value: unknown): void {
@@ -126,7 +126,7 @@ export function resolveItemsFromArgs(argv: string[]): string[] {
   const content = fs.readFileSync(resolvedFilePath, "utf-8");
 
   return content
-    .split(/?/)
+    .split(/\r?\n/)
     .map((item) => item.trim())
     .filter(Boolean);
 }

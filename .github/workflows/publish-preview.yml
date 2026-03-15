@@ -1,0 +1,53 @@
+name: Publish Preview Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-preview:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node for GitHub Packages
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com
+          scope: "@danielarndt0"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run lint
+        run: npm run lint
+
+      - name: Run typecheck
+        run: npm run typecheck
+
+      - name: Run unit tests
+        run: npm run test:unit
+
+      - name: Run build
+        run: npm run build
+
+      - name: Set preview version
+        shell: bash
+        run: |
+          BASE_VERSION=$(node -e "const fs=require('fs'); const pkg=JSON.parse(fs.readFileSync('package.json','utf8')); process.stdout.write(pkg.version.split('-')[0]);")
+          PREVIEW_VERSION="${BASE_VERSION}-dev.${GITHUB_RUN_NUMBER}"
+          npm version "$PREVIEW_VERSION" --no-git-tag-version --allow-same-version
+
+      - name: Publish preview package
+        run: npm publish --tag dev
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

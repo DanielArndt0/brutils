@@ -2,27 +2,24 @@
 
 ## Overview
 
-The number picker module selects one random integer from a numeric range.
+The number picker is a focused helper that returns exactly one integer in a range, with optional seeded deterministic output.
 
-This module remains available for backwards compatibility and now supports `--seed` for reproducible picks.
-
-## Available Commands
-
-### Pick one number
+## CLI Commands
 
 ```bash
-npm run number-picker:run -- --min 1 --max 100
+brutils number-picker run --min 1 --max 10
+brutils number-picker run --min 100 --max 999 --seed 42
 ```
 
 ## Flags
 
-| Flag         | Type    | Required | Description                    | Example                                                    |
-| ------------ | ------- | -------- | ------------------------------ | ---------------------------------------------------------- |
-| `--min <n>`  | integer | No       | Optional minimum value.        | `npm run number-picker:run -- --min 1`                     |
-| `--max <n>`  | integer | No       | Optional maximum value.        | `npm run number-picker:run -- --max 100`                   |
-| `--seed <n>` | integer | No       | Makes the result reproducible. | `npm run number-picker:run -- --min 1 --max 100 --seed 42` |
+| Flag              | Type    | Description                |
+| ----------------- | ------- | -------------------------- |
+| `--min <number>`  | integer | Minimum integer value.     |
+| `--max <number>`  | integer | Maximum integer value.     |
+| `--seed <number>` | integer | Make output deterministic. |
 
 ## Notes
 
-- The command returns a single integer.
-- For the broader random utilities group, also see `RANDOM_NUMBER.md`.
+- `brutils pick-number run ...` works as an alias.
+- Use `brutils number-picker run --help` for inline help.
