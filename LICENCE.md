@@ -1,6 +1,4 @@
-# License
-
-## MIT License
+# MIT License
 
 **Brutils** is licensed under the **MIT License**.
 
