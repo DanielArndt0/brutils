@@ -1,5 +1,7 @@
 # HASH
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The `hash` module provides digest helpers for inline text, files, HMAC operations, file checksums and hash comparisons.

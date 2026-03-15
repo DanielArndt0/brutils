@@ -31,6 +31,7 @@ ${theme.section("Examples")}
   ${theme.command("brutils zip create ./folder --out ./backup.zip --force")}
 
 ${theme.section("Tips")}
+  ${theme.muted("The official interface is the brutils command.")}
   ${theme.muted("Use --no-color if you want plain output.")}
   ${theme.muted("Use module-specific --help to see focused examples.")}
 `;

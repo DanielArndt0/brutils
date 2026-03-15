@@ -1,5 +1,7 @@
 # ID
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The `id` module provides UUID, random token and password generation helpers for tests, auth flows and fixtures.

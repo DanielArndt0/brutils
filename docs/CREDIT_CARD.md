@@ -1,5 +1,7 @@
 # Credit Card
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The credit card module generates synthetic card test data, detects card brands and validates card payloads.

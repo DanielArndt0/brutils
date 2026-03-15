@@ -1,5 +1,7 @@
 # JSON
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The `json` module provides local JSON formatting, validation, editing, diff and conversion helpers.

@@ -1,5 +1,7 @@
 # Random Utilities
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The random utilities cover integer generation, float generation, list picking, item shuffling, dice rolling, coin flipping and seeded deterministic output.

@@ -1,5 +1,7 @@
 # CNPJ
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The CNPJ module generates, validates, formats, strips and masks CNPJ values for testing and development workflows.

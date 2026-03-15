@@ -1,5 +1,7 @@
 # Number Picker
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The number picker is a focused helper that returns exactly one integer in a range, with optional seeded deterministic output.
@@ -21,5 +23,5 @@ brutils number-picker run --min 100 --max 999 --seed 42
 
 ## Notes
 
-- `brutils pick-number run ...` works as an alias.
+- `brutils pick-number run ...` is supported as an alias.
 - Use `brutils number-picker run --help` for inline help.

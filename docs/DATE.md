@@ -1,5 +1,7 @@
 # DATE
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The `date` module provides quick helpers for formatting, parsing, arithmetic, unix conversion and time zone rendering.

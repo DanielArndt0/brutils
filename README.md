@@ -1,28 +1,31 @@
 # Brutils
 
-**Brutils** is a modular command-line toolkit with practical utilities for Brazilian and general developer workflows.
+**Brutils** is a production-ready command-line toolkit for Brazilian and general developer workflows.
 
 It includes:
 
 - CPF, CNPJ and CEP generation, validation, formatting, stripping and masking
 - credit card test data generation, validation and brand detection
+- string helpers for transformation, extraction and encoding
+- local JSON helpers for formatting, editing, diffing and YAML conversion
+- digest helpers, UUID/token/password generation and quick date utilities
 - random integers, floats, picks, shuffles, dice rolls and coin flips
 - number picking with deterministic seeds
 - ZIP creation, archive listing, archive testing and ZIP extraction
-- core text helpers for strings and local JSON manipulation
-- digest helpers, UUID/token/password generation and quick date utilities
 
-The project keeps a modular service architecture internally, but now ships with a real CLI entrypoint:
+Brutils **1.0.0** ships with a single public interface:
 
 ```bash
 brutils --help
 ```
 
+There are no legacy command entrypoints in this release. The official way to use the project is through the `brutils` CLI.
+
 ---
 
 ## Installation
 
-### Local project setup
+### Local development
 
 ```bash
 npm install
@@ -32,11 +35,12 @@ npm link
 
 After linking, the `brutils` command will be available on your machine for local development.
 
-### Package usage
+### From GitHub Packages
 
-If you publish this package to GitHub Packages, install it with your configured registry and then use:
+If the package is published to GitHub Packages and your registry is configured, install it globally and use the CLI directly:
 
 ```bash
+npm install -g @danielarndt0/brutils-cli
 brutils --help
 ```
 
@@ -60,7 +64,6 @@ brutils date diff --from 2024-01-01T00:00:00Z --to 2024-01-03T00:00:00Z --unit d
 
 brutils random-number int --min 1 --max 60 --count 6 --unique --sorted
 brutils random-number pick --items "red,blue,green" --count 2
-
 brutils number-picker run --min 1 --max 100 --seed 42
 
 brutils zip create ./dist --out ./artifacts/dist.zip
@@ -158,7 +161,7 @@ brutils
     └── test
 ```
 
-Aliases currently supported:
+Supported command aliases:
 
 - `brutils card ...` for `brutils credit-card ...`
 - `brutils rand ...` for `brutils random-number ...`
@@ -169,40 +172,41 @@ Aliases currently supported:
 
 ## Built-in Help
 
-The CLI includes module-level and action-level help.
-
-Examples:
+The CLI includes root, module and action help.
 
 ```bash
 brutils --help
 brutils cpf --help
 brutils cpf generate --help
-brutils random-number --help
+brutils str --help
+brutils json format --help
+brutils hash --help
+brutils date diff --help
 brutils zip create --help
 ```
 
 ---
 
-## Development Commands
+## Development
 
-The legacy `npm run ...` scripts are still kept for local development and backwards compatibility.
+Brutils now exposes a single command surface to end users: `brutils`.
 
-Main development commands:
+The `package.json` scripts are reserved for project development tasks:
 
 ```bash
-npm run cli -- --help
 npm run build
 npm run lint
 npm run typecheck
 npm run test:unit
+npm run cli -- --help
 ```
 
-Examples using the legacy scripts:
+Examples while developing locally:
 
 ```bash
-npm run cpf:generate -- --formatted
-npm run random-number:int -- --min 1 --max 10 --count 3
-npm run zip:create -- ./dist --out ./artifacts/dist.zip
+npm run cli -- cpf generate --formatted
+npm run cli -- json format --file ./package.json --sort-keys
+npm run cli -- zip create ./dist --out ./artifacts/dist.zip
 ```
 
 ---
@@ -218,47 +222,16 @@ npm run zip:create -- ./dist --out ./artifacts/dist.zip
 - [Hash](docs/HASH.md)
 - [ID](docs/ID.md)
 - [Date](docs/DATE.md)
-- [Random Utilities](docs/RANDOM_NUMBER.md)
+- [Random Number](docs/RANDOM_NUMBER.md)
 - [Number Picker](docs/NUMBER_PICKER.md)
 - [ZIP](docs/ZIP.md)
 - [UNZIP](docs/UNZIP.md)
 
 ---
 
-## Project Structure
+## Release Notes for 1.0.0
 
-```text
-src/
-  cli.ts
-  core/
-  services/
-  cli/
-
-scripts/
-  ...legacy compatibility entrypoints...
-
-tests/
-docs/
-.github/workflows/
-```
-
----
-
-## CI/CD
-
-This repository is prepared for three workflow layers:
-
-- **CI** for push and pull request validation
-- **Preview publish** on `main`, producing a `-dev.<run_number>` package version
-- **Release publish** on stable tags like `v0.4.0`
-
-The workflows live in `.github/workflows/`.
-
----
-
-## Notes
-
-- CPF, CNPJ, CEP and credit card generators produce synthetic values for testing and development.
-- ZIP and UNZIP helpers support dry-run planning, listing and testing.
-- Seeded random commands are useful for reproducible fixtures and test scenarios.
-- Date formatting uses simple UTC token formatting for predictable terminal output.
+- `brutils` is now the single public interface for the toolkit
+- legacy script entrypoints have been removed from the package surface
+- documentation was consolidated around the CLI-first workflow
+- the project version was promoted to `1.0.0`

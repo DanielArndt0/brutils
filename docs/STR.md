@@ -1,5 +1,7 @@
 # STR
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The `str` module provides local string transformations and encoding helpers for day-to-day terminal workflows.

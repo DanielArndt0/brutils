@@ -1,5 +1,7 @@
 # ZIP
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The ZIP module creates `.zip` files from source files or directories and can also list or test zip archives.
@@ -44,5 +46,5 @@ brutils zip test ./artifacts/build.zip
 
 ## Notes
 
-- `brutils zip run ...` works as an alias for `brutils zip create ...`.
+- `brutils zip run ...` is supported as an alias for `brutils zip create ...`.
 - Use either positional `[out]` or `--out`, not both.

@@ -1,5 +1,7 @@
 # UNZIP
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The UNZIP module extracts `.zip` files into a destination directory and can also list or test archive contents.
@@ -38,5 +40,5 @@ brutils unzip test ./build.zip
 
 ## Notes
 
-- `brutils unzip run ...` works as an alias for `brutils unzip extract ...`.
+- `brutils unzip run ...` is supported as an alias for `brutils unzip extract ...`.
 - Only `.zip` files are supported.

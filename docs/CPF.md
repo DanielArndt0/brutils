@@ -1,5 +1,7 @@
 # CPF
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The CPF module generates, validates, formats, strips and masks CPF values for testing and development workflows.

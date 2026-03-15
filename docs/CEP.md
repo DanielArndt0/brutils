@@ -1,5 +1,7 @@
 # CEP
 
+> Official interface: use the `brutils` CLI commands shown below.
+
 ## Overview
 
 The CEP module generates, validates, formats, strips and masks CEP values for testing and development workflows.
