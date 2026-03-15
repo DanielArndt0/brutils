@@ -45,7 +45,21 @@ export const STRING_CODEC_MODES = ["encode", "decode"] as const;
 
 export const STRING_PAD_SIDES = ["left", "right", "both"] as const;
 
+export const CHARSET_NAMES = [
+  "alnum",
+  "alpha",
+  "numeric",
+  "hex",
+  "base64url",
+  "lower",
+  "upper"
+] as const;
+
+export const DATE_DIFF_UNITS = ["seconds", "minutes", "hours", "days"] as const;
+
 export type RandomOutputFormat = (typeof RANDOM_OUTPUT_FORMATS)[number];
 export type StringCaseStyleOption = (typeof STRING_CASE_STYLES)[number];
 export type StringCodecModeOption = (typeof STRING_CODEC_MODES)[number];
 export type StringPadSideOption = (typeof STRING_PAD_SIDES)[number];
+export type CharsetNameOption = (typeof CHARSET_NAMES)[number];
+export type DateDiffUnitOption = (typeof DATE_DIFF_UNITS)[number];

@@ -2,12 +2,13 @@ import { Command } from "commander";
 
 import { registerArchiveCommands } from "./commands/register-archive.js";
 import { registerBrazilianCommands } from "./commands/register-brazilian.js";
+import { registerHelperCommands } from "./commands/register-helpers.js";
 import { registerRandomCommands } from "./commands/register-random.js";
 import { registerTextDataCommands } from "./commands/register-text-data.js";
 import { rootFooter } from "./shared/help.js";
 import { configureProgramUi } from "./ui/output.js";
 
-const CLI_VERSION = "0.3.1";
+const CLI_VERSION = "0.4.0";
 
 export function buildProgram(): Command {
   const program = new Command();
@@ -24,6 +25,7 @@ export function buildProgram(): Command {
 
   registerBrazilianCommands(program);
   registerTextDataCommands(program);
+  registerHelperCommands(program);
   registerRandomCommands(program);
   registerArchiveCommands(program);
 

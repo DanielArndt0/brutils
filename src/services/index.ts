@@ -8,3 +8,6 @@ export * from "./zip/index.js";
 export * from "./unzip/index.js";
 export * from "./str/index.js";
 export * from "./json/index.js";
+export * from "./hash/index.js";
+export * from "./id/index.js";
+export * from "./date/index.js";

@@ -3,6 +3,8 @@ import { InvalidArgumentError } from "commander";
 import type { CEPStateCode } from "../../services/cep/index.js";
 import type { CPFStateCode } from "../../services/cpf/index.js";
 import type { CreditCardBrand } from "../../services/credit-card/index.js";
+import type { DateDiffUnit } from "../../services/date/index.js";
+import type { CharsetName } from "../../services/id/index.js";
 import type {
   StringCaseStyle,
   StringCodecMode,
@@ -11,10 +13,14 @@ import type {
 import {
   BRAZILIAN_STATES,
   CARD_BRANDS,
+  CHARSET_NAMES,
+  DATE_DIFF_UNITS,
   RANDOM_OUTPUT_FORMATS,
   STRING_CASE_STYLES,
   STRING_CODEC_MODES,
   STRING_PAD_SIDES,
+  type CharsetNameOption,
+  type DateDiffUnitOption,
   type RandomOutputFormat,
   type StringCaseStyleOption,
   type StringCodecModeOption,
@@ -127,4 +133,28 @@ export function parseStringPadSide(value: string): StringPadSide {
   }
 
   return normalized as StringPadSide;
+}
+
+export function parseCharsetName(value: string): CharsetName {
+  const normalized = value.toLowerCase();
+
+  if (!CHARSET_NAMES.includes(normalized as CharsetNameOption)) {
+    throw new InvalidArgumentError(
+      `Invalid charset "${value}". Use one of: ${CHARSET_NAMES.join(", ")}.`
+    );
+  }
+
+  return normalized as CharsetName;
+}
+
+export function parseDateDiffUnit(value: string): DateDiffUnit {
+  const normalized = value.toLowerCase();
+
+  if (!DATE_DIFF_UNITS.includes(normalized as DateDiffUnitOption)) {
+    throw new InvalidArgumentError(
+      `Invalid diff unit "${value}". Use one of: ${DATE_DIFF_UNITS.join(", ")}.`
+    );
+  }
+
+  return normalized as DateDiffUnit;
 }

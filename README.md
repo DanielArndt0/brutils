@@ -10,6 +10,7 @@ It includes:
 - number picking with deterministic seeds
 - ZIP creation, archive listing, archive testing and ZIP extraction
 - core text helpers for strings and local JSON manipulation
+- digest helpers, UUID/token/password generation and quick date utilities
 
 The project keeps a modular service architecture internally, but now ships with a real CLI entrypoint:
 
@@ -53,6 +54,9 @@ brutils credit-card detect 4111111111111111
 
 brutils str slug --text "Olá Mundo Legal"
 brutils json format --value '{"name":"brutils","ok":true}' --sort-keys
+brutils hash sha256 --text hello
+brutils id token --length 24 --charset base64url
+brutils date diff --from 2024-01-01T00:00:00Z --to 2024-01-03T00:00:00Z --unit days
 
 brutils random-number int --min 1 --max 60 --count 6 --unique --sorted
 brutils random-number pick --items "red,blue,green" --count 2
@@ -114,6 +118,27 @@ brutils
 │   ├── diff
 │   ├── merge
 │   └── to-yaml
+├── hash
+│   ├── md5
+│   ├── sha1
+│   ├── sha256
+│   ├── sha512
+│   ├── hmac
+│   ├── checksum
+│   └── compare
+├── id
+│   ├── uuid
+│   ├── token
+│   └── password
+├── date
+│   ├── now
+│   ├── format
+│   ├── parse
+│   ├── add
+│   ├── sub
+│   ├── diff
+│   ├── unix
+│   └── tz
 ├── random-number
 │   ├── int
 │   ├── float
@@ -190,6 +215,9 @@ npm run zip:create -- ./dist --out ./artifacts/dist.zip
 - [Credit Card](docs/CREDIT_CARD.md)
 - [STR](docs/STR.md)
 - [JSON](docs/JSON.md)
+- [Hash](docs/HASH.md)
+- [ID](docs/ID.md)
+- [Date](docs/DATE.md)
 - [Random Utilities](docs/RANDOM_NUMBER.md)
 - [Number Picker](docs/NUMBER_PICKER.md)
 - [ZIP](docs/ZIP.md)
@@ -204,18 +232,10 @@ src/
   cli.ts
   core/
   services/
+  cli/
 
 scripts/
-  cpf/
-  cnpj/
-  cep/
-  credit-card/
-  random-number/
-  number-picker/
-  str/
-  json/
-  zip/
-  unzip/
+  ...legacy compatibility entrypoints...
 
 tests/
 docs/
@@ -230,7 +250,7 @@ This repository is prepared for three workflow layers:
 
 - **CI** for push and pull request validation
 - **Preview publish** on `main`, producing a `-dev.<run_number>` package version
-- **Release publish** on stable tags like `v0.3.0`
+- **Release publish** on stable tags like `v0.4.0`
 
 The workflows live in `.github/workflows/`.
 
@@ -241,3 +261,4 @@ The workflows live in `.github/workflows/`.
 - CPF, CNPJ, CEP and credit card generators produce synthetic values for testing and development.
 - ZIP and UNZIP helpers support dry-run planning, listing and testing.
 - Seeded random commands are useful for reproducible fixtures and test scenarios.
+- Date formatting uses simple UTC token formatting for predictable terminal output.

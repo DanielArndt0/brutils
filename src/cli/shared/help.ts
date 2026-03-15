@@ -24,6 +24,9 @@ ${theme.section("Examples")}
   ${theme.command("brutils cpf generate --formatted")}
   ${theme.command('brutils str slug --text "Olá Mundo Legal"')}
   ${theme.command("brutils json format --file ./config.json --sort-keys")}
+  ${theme.command("brutils hash sha256 --text hello")}
+  ${theme.command("brutils id token --length 24 --charset base64url")}
+  ${theme.command("brutils date diff --from 2024-01-01T00:00:00Z --to 2024-01-03T00:00:00Z --unit days")}
   ${theme.command("brutils random-number int --min 1 --max 60 --count 6 --unique --sorted")}
   ${theme.command("brutils zip create ./folder --out ./backup.zip --force")}
 
