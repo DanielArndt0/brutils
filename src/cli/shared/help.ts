@@ -22,7 +22,7 @@ ${theme.section("Quick start")}
 
 ${theme.section("Examples")}
   ${theme.command("brutils cpf generate --formatted")}
-  ${theme.command('brutils str slug --text "Olá Mundo Legal"')}
+  ${theme.command('brutils str slug --text "Hello Cool World"')}
   ${theme.command("brutils json format --file ./config.json --sort-keys")}
   ${theme.command("brutils hash sha256 --text hello")}
   ${theme.command("brutils id token --length 24 --charset base64url")}

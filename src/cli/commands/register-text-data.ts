@@ -53,8 +53,8 @@ export function registerTextDataCommands(program: Command): void {
     .addHelpText(
       "after",
       examples([
-        'brutils str slug --text "Olá Mundo Legal"',
-        'brutils str case --text "minha variavel legal" --to camel',
+        'brutils str slug --text "Hello Cool World"',
+        'brutils str case --text "my cool variable" --to camel',
         'brutils str truncate --text "hello world" --max 8 --suffix "..."',
         'brutils str replace --text "hello 123" --from "\\\\d+" --with "X" --regex',
         'brutils str extract "\\\\[(.*?)\\\\]" --text "[one] [two]" --regex',

@@ -9,13 +9,13 @@ The `str` module provides local string transformations and encoding helpers for 
 ## CLI Commands
 
 ```bash
-brutils str slug --text "Olá Mundo Legal"
-brutils str case --text "minha variavel legal" --to camel
+brutils str slug --text "Hello Cool World"
+brutils str case --text "my cool variable" --to camel
 brutils str trim --text "   hello world   "
 brutils str truncate --text "hello world" --max 8 --suffix "..."
 brutils str replace --text "hello 123" --from "\d+" --with "X" --regex
 brutils str normalize --text "Café"
-brutils str remove-accents --text "ação"
+brutils str remove-accents --text "résumé"
 brutils str pad --text "42" --length 5 --side left
 brutils str extract "\[(.*?)\]" --text "[one] [two]" --regex
 brutils str base64 --text "hello" --mode encode

@@ -56,7 +56,7 @@ brutils cep mask 86010190 --mask "###**-***"
 brutils credit-card generate --brand visa --formatted
 brutils credit-card detect 4111111111111111
 
-brutils str slug --text "Olá Mundo Legal"
+brutils str slug --text "Hello Cool World"
 brutils json format --value '{"name":"brutils","ok":true}' --sort-keys
 brutils hash sha256 --text hello
 brutils id token --length 24 --charset base64url

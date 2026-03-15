@@ -16,15 +16,15 @@ import {
 
 describe("str service", () => {
   it("should slugify text", () => {
-    expect(slugifyText("Olá Mundo Legal")).toBe("ola-mundo-legal");
+    expect(slugifyText("Hello Cool World")).toBe("hello-cool-world");
   });
 
   it("should convert text between case styles", () => {
-    expect(convertStringCase("minha variavel legal", "camel")).toBe(
-      "minhaVariavelLegal"
+    expect(convertStringCase("my cool variable", "camel")).toBe(
+      "myCoolVariable"
     );
-    expect(convertStringCase("minha variavel legal", "constant")).toBe(
-      "MINHA_VARIAVEL_LEGAL"
+    expect(convertStringCase("my cool variable", "constant")).toBe(
+      "MY_COOL_VARIABLE"
     );
   });
 
@@ -45,8 +45,8 @@ describe("str service", () => {
   });
 
   it("should normalize and remove accents", () => {
-    expect(normalizeText("Café")).toBe("Café");
-    expect(removeAccents("ação")).toBe("acao");
+    expect(normalizeText("Café")).toBe("Café");
+    expect(removeAccents("résumé")).toBe("resume");
   });
 
   it("should pad text", () => {
