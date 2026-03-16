@@ -11,10 +11,35 @@ import {
   transformHtmlEntities,
   transformUrlEncoding,
   trimText,
-  truncateText
+  truncateText,
+  getLevenshteinDistance
 } from "../../src/services/str/index.js";
 
 describe("str service", () => {
+  it("should give me the distance between two strings", () => {
+    expect(getLevenshteinDistance("kitten", "sitting")).toBe(3);
+  });
+
+  it("should give me the distance between two strings", () => {
+    expect(getLevenshteinDistance("book", "back")).toBe(2);
+  });
+
+  it("should give me the distance between two strings", () => {
+    expect(getLevenshteinDistance("cat", "cut")).toBe(1);
+  });
+
+  it("should give me the distance between two strings", () => {
+    expect(getLevenshteinDistance("", "")).toBe(0);
+  });
+
+  it("should give me the distance between two strings", () => {
+    expect(getLevenshteinDistance("Hello".toLowerCase(), "hello")).toBe(0);
+  });
+
+  it("should give me the distance between two strings", () => {
+    expect(getLevenshteinDistance("João", "Joao")).toBe(1);
+  });
+
   it("should slugify text", () => {
     expect(slugifyText("Hello Cool World")).toBe("hello-cool-world");
   });
