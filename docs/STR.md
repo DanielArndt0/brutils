@@ -40,6 +40,7 @@ brutils str leven "João" "Joao"
 | `base64`         | `brutils str base64 --text <value> [--mode <mode>]`                          | Encode or decode Base64.                     |
 | `urlencode`      | `brutils str urlencode --text <value> [--mode <mode>]`                       | Encode or decode URL content.                |
 | `html`           | `brutils str html --text <value> [--mode <mode>]`                            | Encode or decode HTML entities.              |
+| `leven`          | `brutils str leven <value> <value>`                                          | Gets the distance between two strings using the Levenshtein Algorithm.                                                                                                                                       |
 
 ## Flags
 
