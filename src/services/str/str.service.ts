@@ -255,6 +255,9 @@ export function transformHtmlEntities(
 }
 
 export function getLevenshteinDistance(a: string, b: string): number {
+  a.trim()
+  b.trim()
+  
   const n = a.length;
   const m = b.length;
 
