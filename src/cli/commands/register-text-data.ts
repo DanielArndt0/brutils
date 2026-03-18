@@ -60,7 +60,7 @@ export function registerTextDataCommands(program: Command): void {
         'brutils str replace --text "hello 123" --from "\\\\d+" --with "X" --regex',
         'brutils str extract "\\\\[(.*?)\\\\]" --text "[one] [two]" --regex',
         'brutils str base64 --text "hello" --mode encode',
-        'brutils str leven "João" "Joao"'
+        'brutils str leven "kitten" "sitting"'
       ])
     );
 
@@ -271,7 +271,7 @@ export function registerTextDataCommands(program: Command): void {
     );
 
   str
-  .description("Gets the distance between two strings using the Levenshtein Algorithm")
+  .description("Calculates the Levenshtein distance between two strings")
   .command("leven")
   .argument("<a>")
   .argument("<b>")

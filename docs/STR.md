@@ -21,7 +21,7 @@ brutils str extract "\[(.*?)\]" --text "[one] [two]" --regex
 brutils str base64 --text "hello" --mode encode
 brutils str urlencode --text "hello world" --mode encode
 brutils str html --text "<strong>ok</strong>" --mode encode
-brutils str leven "João" "Joao"
+brutils str leven "kitten" "sitting"
 ```
 
 ## Actions
@@ -40,7 +40,7 @@ brutils str leven "João" "Joao"
 | `base64`         | `brutils str base64 --text <value> [--mode <mode>]`                          | Encode or decode Base64.                     |
 | `urlencode`      | `brutils str urlencode --text <value> [--mode <mode>]`                       | Encode or decode URL content.                |
 | `html`           | `brutils str html --text <value> [--mode <mode>]`                            | Encode or decode HTML entities.              |
-| `leven`          | `brutils str leven <value> <value>`                                          | Gets the distance between two strings using the Levenshtein Algorithm.                                                                                                                                       |
+| `leven`          | `brutils str leven <value> <value>`                                          | Calculates the Levenshtein distance between two strings.                                                                                                                                         |
 
 ## Flags
 
