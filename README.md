@@ -35,6 +35,15 @@ npm link
 
 After linking, the `brutils` command will be available on your machine for local development.
 
+### From npm
+
+Install the public package globally from npmjs.com and use the CLI directly:
+
+```bash
+npm install -g @danielarndt0/brutils-cli
+brutils --help
+```
+
 ### From GitHub Packages
 
 If the package is published to GitHub Packages and your registry is configured, install it globally and use the CLI directly:

@@ -6,15 +6,42 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
   "bin": {
     "brutils": "./dist/cli.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "docs",
+    "README.md",
+    "LICENSE"
   ],
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
+  "keywords": [
+    "brutils",
+    "brazilian-utils",
+    "brazil",
+    "cpf",
+    "cnpj",
+    "cep",
+    "credit-card",
+    "cli",
+    "command-line",
+    "typescript",
+    "nodejs",
+    "developer-tools",
+    "data-generation",
+    "data-validation",
+    "string",
+    "json",
+    "zip",
+    "unzip",
+    "utils"
+  ],
   "engines": {
     "node": ">=20"
   },
@@ -27,7 +54,9 @@
     "test:watch": "vitest",
     "lint": "eslint .",
     "format": "prettier . --write",
-    "typecheck": "tsc --noEmit"
+    "format:check": "prettier . --check",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck && npm run test:unit && npm run build"
   },
   "dependencies": {
     "archiver": "^7.0.1",

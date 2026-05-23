@@ -142,3 +142,6 @@ vite.config.ts.timestamp-*
 .DS_Store
 src/.DS_Store
 tests/.DS_Store
+
+# VSCode settings
+.vscode/
