@@ -1,31 +1,74 @@
 # Brutils
 
-**Brutils** is a production-ready command-line toolkit for Brazilian and general developer workflows.
+**Brutils** é uma ferramenta de linha de comando em **Node.js** e **TypeScript** para geração, validação, formatação e manipulação de dados úteis no desenvolvimento de aplicações.
 
-It includes:
+O projeto reúne utilitários para documentos brasileiros como **CPF**, **CNPJ** e **CEP**, além de ferramentas para **cartões de crédito de teste**, **strings**, **JSON**, **hashes**, **UUIDs**, **tokens**, **senhas**, **datas**, **números aleatórios** e arquivos **ZIP**.
 
-- CPF, CNPJ and CEP generation, validation, formatting, stripping and masking
-- credit card test data generation, validation and brand detection
-- string helpers for transformation, extraction and encoding
-- local JSON helpers for formatting, editing, diffing and YAML conversion
-- digest helpers, UUID/token/password generation and quick date utilities
-- random integers, floats, picks, shuffles, dice rolls and coin flips
-- number picking with deterministic seeds
-- ZIP creation, archive listing, archive testing and ZIP extraction
+É uma CLI modular para desenvolvedores que precisam executar tarefas rápidas diretamente no terminal, sem depender de scripts manuais ou ferramentas separadas.
 
-Brutils **1.0.0** ships with a single public interface:
+---
+
+## Recursos
+
+Com o Brutils, você pode:
+
+- Gerar, validar, formatar, limpar e mascarar CPF, CNPJ e CEP
+- Gerar cartões de crédito de teste, validar números e detectar bandeiras
+- Transformar, extrair, codificar e manipular strings
+- Formatar, editar, comparar e converter JSON/YAML localmente
+- Gerar hashes, UUIDs, tokens e senhas
+- Executar utilitários rápidos de datas
+- Gerar números inteiros, decimais, sorteios, embaralhamentos, dados e cara ou coroa
+- Sortear números com sementes determinísticas
+- Criar arquivos ZIP, listar arquivos compactados, testar arquivos e extrair ZIPs
+
+A partir da versão **1.0.0**, o Brutils possui uma única interface pública:
 
 ```bash
 brutils --help
 ```
 
-There are no legacy command entrypoints in this release. The official way to use the project is through the `brutils` CLI.
+O uso oficial do projeto é feito pelo comando `brutils`.
 
 ---
 
-## Installation
+## Instalação
 
-### Local development
+### Instalação global via npm
+
+Instale o pacote globalmente pelo npm:
+
+```bash
+npm install -g @danielarndt0/brutils-cli
+```
+
+Depois, execute:
+
+```bash
+brutils --help
+```
+
+---
+
+### Instalação via GitHub Packages
+
+Caso o pacote esteja publicado no GitHub Packages e seu registry esteja configurado, instale globalmente com:
+
+```bash
+npm install -g @danielarndt0/brutils-cli
+```
+
+Depois, use a CLI normalmente:
+
+```bash
+brutils --help
+```
+
+---
+
+### Instalação para desenvolvimento local
+
+Para clonar, compilar e testar o projeto localmente:
 
 ```bash
 npm install
@@ -33,64 +76,107 @@ npm run build
 npm link
 ```
 
-After linking, the `brutils` command will be available on your machine for local development.
-
-### From npm
-
-Install the public package globally from npmjs.com and use the CLI directly:
+Após o `npm link`, o comando `brutils` ficará disponível na sua máquina.
 
 ```bash
-npm install -g @danielarndt0/brutils-cli
-brutils --help
-```
-
-### From GitHub Packages
-
-If the package is published to GitHub Packages and your registry is configured, install it globally and use the CLI directly:
-
-```bash
-npm install -g @danielarndt0/brutils-cli
 brutils --help
 ```
 
 ---
 
-## Quick Start
+## Uso rápido
+
+### CPF, CNPJ e CEP
 
 ```bash
 brutils cpf generate --formatted
 brutils cnpj validate 11.444.777/0001-61 --strict
 brutils cep mask 86010190 --mask "###**-***"
+```
 
+### Cartão de crédito
+
+```bash
 brutils credit-card generate --brand visa --formatted
 brutils credit-card detect 4111111111111111
+```
 
+### Strings, JSON, hash, ID e datas
+
+```bash
 brutils str slug --text "Hello Cool World"
 brutils json format --value '{"name":"brutils","ok":true}' --sort-keys
 brutils hash sha256 --text hello
 brutils id token --length 24 --charset base64url
 brutils date diff --from 2024-01-01T00:00:00Z --to 2024-01-03T00:00:00Z --unit days
+```
 
+### Números aleatórios e sorteios
+
+```bash
 brutils random-number int --min 1 --max 60 --count 6 --unique --sorted
 brutils random-number pick --items "red,blue,green" --count 2
 brutils number-picker run --min 1 --max 100 --seed 42
+```
 
+### ZIP e UNZIP
+
+```bash
 brutils zip create ./dist --out ./artifacts/dist.zip
 brutils unzip extract ./artifacts/dist.zip --out ./restored
 ```
 
-Supported command aliases:
+---
 
-- `brutils card ...` for `brutils credit-card ...`
-- `brutils rand ...` for `brutils random-number ...`
-- `brutils zip run ...` for `brutils zip create ...`
-- `brutils unzip run ...` for `brutils unzip extract ...`
+## Aliases disponíveis
+
+Alguns comandos possuem aliases para facilitar o uso no terminal:
+
+```bash
+brutils card ...
+```
+
+Alias para:
+
+```bash
+brutils credit-card ...
+```
+
+```bash
+brutils rand ...
+```
+
+Alias para:
+
+```bash
+brutils random-number ...
+```
+
+```bash
+brutils zip run ...
+```
+
+Alias para:
+
+```bash
+brutils zip create ...
+```
+
+```bash
+brutils unzip run ...
+```
+
+Alias para:
+
+```bash
+brutils unzip extract ...
+```
 
 ---
 
-## Built-in Help
+## Ajuda integrada
 
-The CLI includes root, module and action help.
+A CLI possui ajuda integrada no comando principal, nos módulos e nas ações específicas.
 
 ```bash
 brutils --help
@@ -105,11 +191,11 @@ brutils zip create --help
 
 ---
 
-## Development
+## Desenvolvimento
 
-Brutils now exposes a single command surface to end users: `brutils`.
+O Brutils expõe apenas o comando `brutils` para uso final.
 
-The `package.json` scripts are reserved for project development tasks:
+Os scripts do `package.json` são voltados para desenvolvimento, testes e validação do projeto.
 
 ```bash
 npm run build
@@ -119,7 +205,7 @@ npm run test:unit
 npm run cli -- --help
 ```
 
-Examples while developing locally:
+Exemplos durante o desenvolvimento local:
 
 ```bash
 npm run cli -- cpf generate --formatted
@@ -129,7 +215,9 @@ npm run cli -- zip create ./dist --out ./artifacts/dist.zip
 
 ---
 
-## Documentation
+## Documentação
+
+A documentação dos módulos está organizada por recurso:
 
 - [CPF](docs/CPF.md)
 - [CNPJ](docs/CNPJ.md)
@@ -147,9 +235,6 @@ npm run cli -- zip create ./dist --out ./artifacts/dist.zip
 
 ---
 
-## Release Notes for 1.0.0
+## Licença
 
-- `brutils` is now the single public interface for the toolkit
-- legacy script entrypoints have been removed from the package surface
-- documentation was consolidated around the CLI-first workflow
-- the project version was promoted to `1.0.0`
+MIT
