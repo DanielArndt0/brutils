@@ -1,12 +1,10 @@
 # CEP
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo CEP gera, valida, formata, remove formatação e mascara valores de CEP para fluxos de trabalho de testes e desenvolvimento.
 
-The CEP module generates, validates, formats, strips and masks CEP values for testing and development workflows.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils cep generate
@@ -22,27 +20,27 @@ brutils cep mask 86010190
 brutils cep mask 86010190 --mask "###**-***"
 ```
 
-## Actions
+## Ações
 
-| Action     | Usage                                         | Description                                                        |
-| ---------- | --------------------------------------------- | ------------------------------------------------------------------ |
-| `generate` | `brutils cep generate [flags]`                | Generate synthetic CEP values.                                     |
-| `validate` | `brutils cep validate <value> [--strict]`     | Validate structure and optional strict repeated-pattern rejection. |
-| `format`   | `brutils cep format <value>`                  | Format a CEP as `00000-000`.                                       |
-| `strip`    | `brutils cep strip <value>`                   | Remove punctuation and keep digits only.                           |
-| `mask`     | `brutils cep mask <value> [--mask <pattern>]` | Mask a CEP for safe display.                                       |
+| Ação       | Uso                                           | Descrição                                                                       |
+| ---------- | --------------------------------------------- | ------------------------------------------------------------------------------- |
+| `generate` | `brutils cep generate [flags]`                | Gera valores sintéticos de CEP.                                                 |
+| `validate` | `brutils cep validate <value> [--strict]`     | Valida a estrutura e, opcionalmente, rejeita padrões repetidos no modo estrito. |
+| `format`   | `brutils cep format <value>`                  | Formata um CEP como `00000-000`.                                                |
+| `strip`    | `brutils cep strip <value>`                   | Remove a pontuação e mantém somente os dígitos.                                 |
+| `mask`     | `brutils cep mask <value> [--mask <pattern>]` | Mascara um CEP para exibição segura.                                            |
 
-## Flags
+## Opções
 
-| Flag               | Applies to | Type    | Description                                          |
-| ------------------ | ---------- | ------- | ---------------------------------------------------- |
-| `--formatted`      | `generate` | boolean | Return generated values with CEP punctuation.        |
-| `--state <uf>`     | `generate` | string  | Bias the leading digit using a Brazilian state code. |
-| `--count <number>` | `generate` | integer | Generate multiple CEP values.                        |
-| `--strict`         | `validate` | boolean | Reject repeated patterns such as `11111111`.         |
-| `--mask <pattern>` | `mask`     | string  | Use `*` to hide digits and `#` to reveal them.       |
+| Opção              | Aplicável a | Tipo     | Descrição                                                        |
+| ------------------ | ----------- | -------- | ---------------------------------------------------------------- |
+| `--formatted`      | `generate`  | booleano | Retorna os valores gerados com a pontuação de CEP.               |
+| `--state <uf>`     | `generate`  | string   | Ajusta o primeiro dígito usando a sigla de um estado brasileiro. |
+| `--count <number>` | `generate`  | inteiro  | Gera vários valores de CEP.                                      |
+| `--strict`         | `validate`  | booleano | Rejeita padrões repetidos como `11111111`.                       |
+| `--mask <pattern>` | `mask`      | string   | Use `*` para ocultar dígitos e `#` para exibi-los.               |
 
-## Notes
+## Observações
 
-- `brutils cep --help` shows examples and usage for the whole module.
-- Generated CEP values are synthetic fixtures and do not perform real address resolution.
+- `brutils cep --help` exibe exemplos e instruções de uso de todo o módulo.
+- Os valores de CEP gerados são dados sintéticos para testes e não realizam consultas reais de endereço.

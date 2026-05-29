@@ -271,13 +271,13 @@ export function registerTextDataCommands(program: Command): void {
     );
 
   str
-  .description("Calculates the Levenshtein distance between two strings")
-  .command("leven")
-  .argument("<a>")
-  .argument("<b>")
-  .action((a: string, b: string) => {
-    printValue(getLevenshteinDistance(a, b));
-  });
+    .description("Calculates the Levenshtein distance between two strings")
+    .command("leven")
+    .argument("<a>")
+    .argument("<b>")
+    .action((a: string, b: string) => {
+      printValue(getLevenshteinDistance(a, b));
+    });
 
   const jsonCommand = program
     .command("json")

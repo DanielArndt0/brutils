@@ -1,12 +1,10 @@
 # ZIP
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo ZIP cria arquivos `.zip` a partir de arquivos ou diretórios de origem e também pode listar ou testar arquivos compactados zip.
 
-The ZIP module creates `.zip` files from source files or directories and can also list or test zip archives.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils zip create ./dist
@@ -20,31 +18,31 @@ brutils zip list ./artifacts/build.zip --match "**/*.txt"
 brutils zip test ./artifacts/build.zip
 ```
 
-## Actions
+## Ações
 
-| Action   | Usage                                           | Description                               |
-| -------- | ----------------------------------------------- | ----------------------------------------- |
-| `create` | `brutils zip create <source> [out] [flags]`     | Create a zip archive.                     |
-| `list`   | `brutils zip list <source> [--match <pattern>]` | List archive contents without extracting. |
-| `test`   | `brutils zip test <source> [--match <pattern>]` | Test archive readability.                 |
+| Ação     | Uso                                             | Descrição                                           |
+| -------- | ----------------------------------------------- | --------------------------------------------------- |
+| `create` | `brutils zip create <source> [out] [flags]`     | Cria um arquivo compactado zip.                     |
+| `list`   | `brutils zip list <source> [--match <pattern>]` | Lista o conteúdo do arquivo compactado sem extrair. |
+| `test`   | `brutils zip test <source> [--match <pattern>]` | Testa a legibilidade do arquivo compactado.         |
 
-## Flags
+## Opções
 
-| Flag                      | Applies to               | Type              | Description                                              |
-| ------------------------- | ------------------------ | ----------------- | -------------------------------------------------------- |
-| `-o, --out <path>`        | `create`                 | string            | Explicit output file path.                               |
-| `-l, --level <number>`    | `create`                 | integer           | Compression level from 0 to 9.                           |
-| `-x, --exclude <glob...>` | `create`                 | repeatable string | Exclude matching files or folders.                       |
-| `--contents-only`         | `create`                 | boolean           | Zip only the folder contents instead of the root folder. |
-| `-f, --force`             | `create`                 | boolean           | Overwrite existing output.                               |
-| `--dry-run`               | `create`                 | boolean           | Print the execution plan only.                           |
-| `-v, --verbose`           | `create`                 | boolean           | Show verbose archive creation logs.                      |
-| `-q, --quiet`             | `create`, `list`, `test` | boolean           | Suppress non-error output.                               |
-| `--follow-symlinks`       | `create`                 | boolean           | Follow symbolic links during input collection.           |
-| `--store`                 | `create`                 | boolean           | Store files without compression.                         |
-| `--match <pattern>`       | `list`, `test`           | string            | Filter which archive entries are included.               |
+| Opção                     | Aplicável a              | Tipo             | Descrição                                                    |
+| ------------------------- | ------------------------ | ---------------- | ------------------------------------------------------------ |
+| `-o, --out <path>`        | `create`                 | string           | Caminho explícito do arquivo de saída.                       |
+| `-l, --level <number>`    | `create`                 | inteiro          | Nível de compactação de 0 a 9.                               |
+| `-x, --exclude <glob...>` | `create`                 | string repetível | Exclui arquivos ou pastas correspondentes.                   |
+| `--contents-only`         | `create`                 | booleano         | Compacta somente o conteúdo da pasta, em vez da pasta raiz.  |
+| `-f, --force`             | `create`                 | booleano         | Sobrescreve a saída existente.                               |
+| `--dry-run`               | `create`                 | booleano         | Exibe somente o plano de execução.                           |
+| `-v, --verbose`           | `create`                 | booleano         | Exibe logs detalhados da criação do arquivo compactado.      |
+| `-q, --quiet`             | `create`, `list`, `test` | booleano         | Suprime saídas que não sejam erros.                          |
+| `--follow-symlinks`       | `create`                 | booleano         | Segue links simbólicos durante a coleta das entradas.        |
+| `--store`                 | `create`                 | booleano         | Armazena os arquivos sem compactação.                        |
+| `--match <pattern>`       | `list`, `test`           | string           | Filtra quais entradas do arquivo compactado serão incluídas. |
 
-## Notes
+## Observações
 
-- `brutils zip run ...` is supported as an alias for `brutils zip create ...`.
-- Use either positional `[out]` or `--out`, not both.
+- `brutils zip run ...` é aceito como um alias para `brutils zip create ...`.
+- Use o argumento posicional `[out]` ou `--out`, mas não os dois ao mesmo tempo.

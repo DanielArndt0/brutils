@@ -1,7 +1,7 @@
 {
   "name": "@danielarndt0/brutils-cli",
-  "version": "1.1.0",
-  "description": "Production-ready CLI for Brazilian and general developer utilities.",
+  "version": "1.1.1",
+  "description": "CLI em Node.js e TypeScript para gerar, validar e formatar CPF, CNPJ e CEP, com utilitários para JSON, strings, hashes, ZIP, IDs, senhas e dados aleatórios.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -45,6 +45,14 @@
   "engines": {
     "node": ">=20"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielArndt0/brutils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DanielArndt0/brutils/issues"
+  },
+  "homepage": "https://github.com/DanielArndt0/brutils#readme",
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",

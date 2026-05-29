@@ -1,19 +1,17 @@
-# Credit Card
+# Cartão de crédito
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo de cartão de crédito gera dados sintéticos de cartões para testes, detecta bandeiras e valida os dados dos cartões.
 
-The credit card module generates synthetic card test data, detects card brands and validates card payloads.
-
-## Supported Brands
+## Bandeiras compatíveis
 
 - `visa`
 - `mastercard`
 - `amex`
 - `elo`
 
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils credit-card generate --brand visa
@@ -24,28 +22,28 @@ brutils credit-card validate --number 4111111111111111 --expiry 12/30 --cvv 123
 brutils credit-card validate --number 4111111111111111 --expiry-month 12 --expiry-year 30 --cvv 123
 ```
 
-## Actions
+## Ações
 
-| Action     | Usage                                                                        | Description                            |
-| ---------- | ---------------------------------------------------------------------------- | -------------------------------------- |
-| `generate` | `brutils credit-card generate [flags]`                                       | Generate synthetic card test data.     |
-| `validate` | `brutils credit-card validate --number <value> --cvv <value> [expiry flags]` | Validate card number, expiry and CVV.  |
-| `detect`   | `brutils credit-card detect <number>`                                        | Detect the card brand from the number. |
+| Ação       | Uso                                                                          | Descrição                                      |
+| ---------- | ---------------------------------------------------------------------------- | ---------------------------------------------- |
+| `generate` | `brutils credit-card generate [flags]`                                       | Gera dados sintéticos de cartões para testes.  |
+| `validate` | `brutils credit-card validate --number <value> --cvv <value> [expiry flags]` | Valida o número, a validade e o CVV do cartão. |
+| `detect`   | `brutils credit-card detect <number>`                                        | Detecta a bandeira do cartão pelo número.      |
 
-## Flags
+## Opções
 
-| Flag                            | Applies to | Type    | Description                                        |
-| ------------------------------- | ---------- | ------- | -------------------------------------------------- |
-| `--brand <brand>`               | `generate` | string  | Choose a specific brand to generate.               |
-| `--formatted`                   | `generate` | boolean | Return the card number with spaces every 4 digits. |
-| `--expiry-years-ahead <number>` | `generate` | integer | Maximum years ahead for generated expiry.          |
-| `--number <value>`              | `validate` | string  | Card number to validate.                           |
-| `--expiry <value>`              | `validate` | string  | Expiry in `MM/YY` format.                          |
-| `--expiry-month <value>`        | `validate` | string  | Expiry month.                                      |
-| `--expiry-year <value>`         | `validate` | string  | Expiry year.                                       |
-| `--cvv <value>`                 | `validate` | string  | CVV code to validate.                              |
+| Opção                           | Aplicável a | Tipo     | Descrição                                                      |
+| ------------------------------- | ----------- | -------- | -------------------------------------------------------------- |
+| `--brand <brand>`               | `generate`  | string   | Seleciona uma bandeira específica para gerar.                  |
+| `--formatted`                   | `generate`  | booleano | Retorna o número do cartão com espaços a cada 4 dígitos.       |
+| `--expiry-years-ahead <number>` | `generate`  | inteiro  | Define o número máximo de anos futuros para a validade gerada. |
+| `--number <value>`              | `validate`  | string   | Número do cartão a validar.                                    |
+| `--expiry <value>`              | `validate`  | string   | Validade no formato `MM/YY`.                                   |
+| `--expiry-month <value>`        | `validate`  | string   | Mês da validade.                                               |
+| `--expiry-year <value>`         | `validate`  | string   | Ano da validade.                                               |
+| `--cvv <value>`                 | `validate`  | string   | Código CVV a validar.                                          |
 
-## Notes
+## Observações
 
-- `brutils credit-card --help` shows module-level usage and examples.
-- Validation checks number format, brand detection, expiry and CVV consistency.
+- `brutils credit-card --help` exibe exemplos e instruções de uso do módulo.
+- A validação verifica o formato do número, a detecção da bandeira, a validade e a consistência do CVV.

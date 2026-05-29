@@ -1,12 +1,10 @@
 # ID
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo `id` fornece utilitários para gerar UUIDs, tokens aleatórios e senhas para testes, fluxos de autenticação e dados de teste.
 
-The `id` module provides UUID, random token and password generation helpers for tests, auth flows and fixtures.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils id uuid
@@ -17,26 +15,26 @@ brutils id password --length 20 --uppercase
 brutils id password --length 16 --no-symbols --no-numbers
 ```
 
-## Actions
+## Ações
 
-| Action     | Usage                                                                                                             | Description                |
-| ---------- | ----------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| `uuid`     | `brutils id uuid [--count <n>]`                                                                                   | Generate UUID values.      |
-| `token`    | `brutils id token [--count <n>] [--length <n>] [--charset <name>]`                                                | Generate random tokens.    |
-| `password` | `brutils id password [--count <n>] [--length <n>] [--charset <name>] [--no-symbols] [--no-numbers] [--uppercase]` | Generate strong passwords. |
+| Ação       | Uso                                                                                                               | Descrição               |
+| ---------- | ----------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `uuid`     | `brutils id uuid [--count <n>]`                                                                                   | Gera valores UUID.      |
+| `token`    | `brutils id token [--count <n>] [--length <n>] [--charset <name>]`                                                | Gera tokens aleatórios. |
+| `password` | `brutils id password [--count <n>] [--length <n>] [--charset <name>] [--no-symbols] [--no-numbers] [--uppercase]` | Gera senhas fortes.     |
 
-## Flags
+## Opções
 
-| Flag               | Applies to          | Type    | Description                                                                                  |
-| ------------------ | ------------------- | ------- | -------------------------------------------------------------------------------------------- |
-| `--count <n>`      | all actions         | integer | Generate multiple values.                                                                    |
-| `--length <n>`     | `token`, `password` | integer | Desired output length.                                                                       |
-| `--charset <name>` | `token`, `password` | string  | Allowed character preset: `alnum`, `alpha`, `numeric`, `hex`, `base64url`, `lower`, `upper`. |
-| `--no-symbols`     | `password`          | boolean | Exclude symbols from generated passwords.                                                    |
-| `--no-numbers`     | `password`          | boolean | Exclude digits from generated passwords.                                                     |
-| `--uppercase`      | `password`          | boolean | Ensure at least one uppercase letter.                                                        |
+| Opção              | Aplicável a         | Tipo     | Descrição                                                                                            |
+| ------------------ | ------------------- | -------- | ---------------------------------------------------------------------------------------------------- |
+| `--count <n>`      | todas as ações      | inteiro  | Gera vários valores.                                                                                 |
+| `--length <n>`     | `token`, `password` | inteiro  | Tamanho desejado para a saída.                                                                       |
+| `--charset <name>` | `token`, `password` | string   | Conjunto de caracteres permitido: `alnum`, `alpha`, `numeric`, `hex`, `base64url`, `lower`, `upper`. |
+| `--no-symbols`     | `password`          | booleano | Exclui símbolos das senhas geradas.                                                                  |
+| `--no-numbers`     | `password`          | booleano | Exclui dígitos das senhas geradas.                                                                   |
+| `--uppercase`      | `password`          | booleano | Garante pelo menos uma letra maiúscula.                                                              |
 
-## Notes
+## Observações
 
-- `token` defaults to the `alnum` charset.
-- `password` includes symbols and numbers by default unless flags remove them.
+- `token` usa o conjunto de caracteres `alnum` por padrão.
+- `password` inclui símbolos e números por padrão, a menos que as opções os removam.

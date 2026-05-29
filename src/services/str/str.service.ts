@@ -251,13 +251,12 @@ export function transformHtmlEntities(
   }
 
   return encodeHtmlEntities(value);
-
 }
 
 export function getLevenshteinDistance(a: string, b: string): number {
-  a = a.trim()
-  b = b.trim()
-  
+  a = a.trim();
+  b = b.trim();
+
   const n = a.length;
   const m = b.length;
 

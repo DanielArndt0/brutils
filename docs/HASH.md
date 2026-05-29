@@ -1,12 +1,10 @@
 # HASH
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo `hash` fornece utilitários de hash para textos informados diretamente, arquivos, operações HMAC, checksums de arquivos e comparações de hash.
 
-The `hash` module provides digest helpers for inline text, files, HMAC operations, file checksums and hash comparisons.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils hash md5 --text hello
@@ -18,29 +16,29 @@ brutils hash checksum --file ./dist/cli.js --algo sha512
 brutils hash compare --file ./README.md --algo sha256 --expected <hash>
 ```
 
-## Actions
+## Ações
 
-| Action     | Usage                                                                                      | Description                                       |
-| ---------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| `md5`      | `brutils hash md5 (--text <value> \| --file <path>)`                                       | Compute an MD5 digest.                            |
-| `sha1`     | `brutils hash sha1 (--text <value> \| --file <path>)`                                      | Compute a SHA-1 digest.                           |
-| `sha256`   | `brutils hash sha256 (--text <value> \| --file <path>)`                                    | Compute a SHA-256 digest.                         |
-| `sha512`   | `brutils hash sha512 (--text <value> \| --file <path>)`                                    | Compute a SHA-512 digest.                         |
-| `hmac`     | `brutils hash hmac --algo <name> --key <value> (--text <value> \| --file <path>)`          | Compute an HMAC using the chosen algorithm.       |
-| `checksum` | `brutils hash checksum --file <path> [--algo <name>]`                                      | Compute a digest for a file.                      |
-| `compare`  | `brutils hash compare --expected <hash> [--algo <name>] (--text <value> \| --file <path>)` | Compare a computed digest with an expected value. |
+| Ação       | Uso                                                                                        | Descrição                                        |
+| ---------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------ |
+| `md5`      | `brutils hash md5 (--text <value> \| --file <path>)`                                       | Calcula um hash MD5.                             |
+| `sha1`     | `brutils hash sha1 (--text <value> \| --file <path>)`                                      | Calcula um hash SHA-1.                           |
+| `sha256`   | `brutils hash sha256 (--text <value> \| --file <path>)`                                    | Calcula um hash SHA-256.                         |
+| `sha512`   | `brutils hash sha512 (--text <value> \| --file <path>)`                                    | Calcula um hash SHA-512.                         |
+| `hmac`     | `brutils hash hmac --algo <name> --key <value> (--text <value> \| --file <path>)`          | Calcula um HMAC usando o algoritmo selecionado.  |
+| `checksum` | `brutils hash checksum --file <path> [--algo <name>]`                                      | Calcula um hash para um arquivo.                 |
+| `compare`  | `brutils hash compare --expected <hash> [--algo <name>] (--text <value> \| --file <path>)` | Compara um hash calculado com um valor esperado. |
 
-## Flags
+## Opções
 
-| Flag                | Applies to                    | Type   | Description           |
-| ------------------- | ----------------------------- | ------ | --------------------- |
-| `--text <value>`    | hash actions                  | string | Inline value to hash. |
-| `--file <path>`     | hash actions                  | string | File to hash.         |
-| `--algo <name>`     | `hmac`, `checksum`, `compare` | string | Hash algorithm name.  |
-| `--key <value>`     | `hmac`                        | string | Secret key for HMAC.  |
-| `--expected <hash>` | `compare`                     | string | Expected hash value.  |
+| Opção               | Aplicável a                   | Tipo   | Descrição                                      |
+| ------------------- | ----------------------------- | ------ | ---------------------------------------------- |
+| `--text <value>`    | ações de hash                 | string | Valor informado diretamente para gerar o hash. |
+| `--file <path>`     | ações de hash                 | string | Arquivo para gerar o hash.                     |
+| `--algo <name>`     | `hmac`, `checksum`, `compare` | string | Nome do algoritmo de hash.                     |
+| `--key <value>`     | `hmac`                        | string | Chave secreta para o HMAC.                     |
+| `--expected <hash>` | `compare`                     | string | Valor de hash esperado.                        |
 
-## Notes
+## Observações
 
-- `compare` returns the computed hash, the expected hash and whether they match.
-- `checksum` defaults to `sha256` when `--algo` is omitted.
+- `compare` retorna o hash calculado, o hash esperado e informa se eles correspondem.
+- `checksum` usa `sha256` por padrão quando `--algo` é omitido.

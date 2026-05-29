@@ -1,27 +1,25 @@
-# Number Picker
+# Seletor de números
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O seletor de números é um utilitário específico que retorna exatamente um número inteiro dentro de um intervalo, com saída determinística opcional baseada em uma semente.
 
-The number picker is a focused helper that returns exactly one integer in a range, with optional seeded deterministic output.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils number-picker run --min 1 --max 10
 brutils number-picker run --min 100 --max 999 --seed 42
 ```
 
-## Flags
+## Opções
 
-| Flag              | Type    | Description                |
-| ----------------- | ------- | -------------------------- |
-| `--min <number>`  | integer | Minimum integer value.     |
-| `--max <number>`  | integer | Maximum integer value.     |
-| `--seed <number>` | integer | Make output deterministic. |
+| Opção             | Tipo    | Descrição                     |
+| ----------------- | ------- | ----------------------------- |
+| `--min <number>`  | inteiro | Valor inteiro mínimo.         |
+| `--max <number>`  | inteiro | Valor inteiro máximo.         |
+| `--seed <number>` | inteiro | Torna a saída determinística. |
 
-## Notes
+## Observações
 
-- `brutils pick-number run ...` is supported as an alias.
-- Use `brutils number-picker run --help` for inline help.
+- `brutils pick-number run ...` é aceito como um alias.
+- Use `brutils number-picker run --help` para exibir a ajuda no terminal.

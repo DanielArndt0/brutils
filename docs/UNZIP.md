@@ -1,12 +1,10 @@
 # UNZIP
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo UNZIP extrai arquivos `.zip` para um diretório de destino e também pode listar ou testar o conteúdo dos arquivos compactados.
 
-The UNZIP module extracts `.zip` files into a destination directory and can also list or test archive contents.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils unzip extract ./build.zip
@@ -18,27 +16,27 @@ brutils unzip list ./build.zip
 brutils unzip test ./build.zip
 ```
 
-## Actions
+## Ações
 
-| Action    | Usage                                             | Description               |
-| --------- | ------------------------------------------------- | ------------------------- |
-| `extract` | `brutils unzip extract <source> [out] [flags]`    | Extract a zip file.       |
-| `list`    | `brutils unzip list <source> [--match <pattern>]` | List archive contents.    |
-| `test`    | `brutils unzip test <source> [--match <pattern>]` | Test archive readability. |
+| Ação      | Uso                                               | Descrição                                   |
+| --------- | ------------------------------------------------- | ------------------------------------------- |
+| `extract` | `brutils unzip extract <source> [out] [flags]`    | Extrai um arquivo zip.                      |
+| `list`    | `brutils unzip list <source> [--match <pattern>]` | Lista o conteúdo do arquivo compactado.     |
+| `test`    | `brutils unzip test <source> [--match <pattern>]` | Testa a legibilidade do arquivo compactado. |
 
-## Flags
+## Opções
 
-| Flag                | Applies to                | Type    | Description                                      |
-| ------------------- | ------------------------- | ------- | ------------------------------------------------ |
-| `-o, --out <path>`  | `extract`                 | string  | Explicit output directory.                       |
-| `-f, --force`       | `extract`                 | boolean | Overwrite target directory if it already exists. |
-| `--dry-run`         | `extract`                 | boolean | Print the extraction plan only.                  |
-| `-v, --verbose`     | `extract`                 | boolean | Show verbose extraction logs.                    |
-| `-q, --quiet`       | `extract`, `list`, `test` | boolean | Suppress non-error output.                       |
-| `--flat`            | `extract`                 | boolean | Extract files without preserving nested folders. |
-| `--match <pattern>` | `extract`, `list`, `test` | string  | Filter which entries are considered.             |
+| Opção               | Aplicável a               | Tipo     | Descrição                                              |
+| ------------------- | ------------------------- | -------- | ------------------------------------------------------ |
+| `-o, --out <path>`  | `extract`                 | string   | Diretório de saída explícito.                          |
+| `-f, --force`       | `extract`                 | booleano | Sobrescreve o diretório de destino caso ele já exista. |
+| `--dry-run`         | `extract`                 | booleano | Exibe somente o plano de extração.                     |
+| `-v, --verbose`     | `extract`                 | booleano | Exibe logs detalhados da extração.                     |
+| `-q, --quiet`       | `extract`, `list`, `test` | booleano | Suprime saídas que não sejam erros.                    |
+| `--flat`            | `extract`                 | booleano | Extrai os arquivos sem preservar pastas aninhadas.     |
+| `--match <pattern>` | `extract`, `list`, `test` | string   | Filtra quais entradas serão consideradas.              |
 
-## Notes
+## Observações
 
-- `brutils unzip run ...` is supported as an alias for `brutils unzip extract ...`.
-- Only `.zip` files are supported.
+- `brutils unzip run ...` é aceito como um alias para `brutils unzip extract ...`.
+- Somente arquivos `.zip` são compatíveis.

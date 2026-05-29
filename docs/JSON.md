@@ -1,12 +1,10 @@
 # JSON
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo `json` fornece utilitários locais para formatação, validação, edição, comparação e conversão de JSON.
 
-The `json` module provides local JSON formatting, validation, editing, diff and conversion helpers.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils json format --file ./config.json --sort-keys
@@ -20,36 +18,36 @@ brutils json merge --file ./base.json ./override.json
 brutils json to-yaml --value '{"name":"brutils","ok":true}'
 ```
 
-## Actions
+## Ações
 
-| Action     | Usage                                                                                                  | Description                                |
-| ---------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| `format`   | `brutils json format (--file <path> \| --value <json>) [--indent <n>] [--sort-keys] [--in-place]`      | Pretty-print JSON.                         |
-| `minify`   | `brutils json minify (--file <path> \| --value <json>) [--in-place]`                                   | Minify JSON.                               |
-| `validate` | `brutils json validate (--file <path> \| --value <json>)`                                              | Validate JSON syntax.                      |
-| `get`      | `brutils json get (--file <path> \| --value <json>) --path <dot.path>`                                 | Read a path from JSON.                     |
-| `set`      | `brutils json set (--file <path> \| --value <json>) --path <dot.path> --set-value <json> [--in-place]` | Write a path in JSON.                      |
-| `delete`   | `brutils json delete (--file <path> \| --value <json>) --path <dot.path> [--in-place]`                 | Remove a path from JSON.                   |
-| `diff`     | `brutils json diff --left <path-or-json> --right <path-or-json>`                                       | Diff two JSON files or inline JSON values. |
-| `merge`    | `brutils json merge [--file <path>...] [--value <json>...]`                                            | Merge multiple JSON sources.               |
-| `to-yaml`  | `brutils json to-yaml (--file <path> \| --value <json>)`                                               | Convert JSON to YAML.                      |
+| Ação       | Uso                                                                                                    | Descrição                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| `format`   | `brutils json format (--file <path> \| --value <json>) [--indent <n>] [--sort-keys] [--in-place]`      | Formata JSON para facilitar a leitura.                             |
+| `minify`   | `brutils json minify (--file <path> \| --value <json>) [--in-place]`                                   | Minifica JSON.                                                     |
+| `validate` | `brutils json validate (--file <path> \| --value <json>)`                                              | Valida a sintaxe JSON.                                             |
+| `get`      | `brutils json get (--file <path> \| --value <json>) --path <dot.path>`                                 | Lê um caminho no JSON.                                             |
+| `set`      | `brutils json set (--file <path> \| --value <json>) --path <dot.path> --set-value <json> [--in-place]` | Grava um valor em um caminho no JSON.                              |
+| `delete`   | `brutils json delete (--file <path> \| --value <json>) --path <dot.path> [--in-place]`                 | Remove um caminho do JSON.                                         |
+| `diff`     | `brutils json diff --left <path-or-json> --right <path-or-json>`                                       | Compara dois arquivos JSON ou valores JSON informados diretamente. |
+| `merge`    | `brutils json merge [--file <path>...] [--value <json>...]`                                            | Mescla várias fontes JSON.                                         |
+| `to-yaml`  | `brutils json to-yaml (--file <path> \| --value <json>)`                                               | Converte JSON para YAML.                                           |
 
-## Flags
+## Opções
 
-| Flag                     | Applies to                          | Type    | Description                                   |
-| ------------------------ | ----------------------------------- | ------- | --------------------------------------------- |
-| `--file <path>`          | most actions                        | string  | Read JSON from a file.                        |
-| `--value <json>`         | most actions                        | string  | Read JSON inline.                             |
-| `--path <dot.path>`      | `get`, `set`, `delete`              | string  | JSON path to operate on.                      |
-| `--set-value <json>`     | `set`                               | string  | New JSON value for the path.                  |
-| `--indent <n>`           | `format`                            | integer | Pretty-print indentation size.                |
-| `--sort-keys`            | `format`                            | boolean | Sort object keys recursively before printing. |
-| `--left <path-or-json>`  | `diff`                              | string  | Left JSON file path or inline JSON value.     |
-| `--right <path-or-json>` | `diff`                              | string  | Right JSON file path or inline JSON value.    |
-| `--in-place`             | `set`, `delete`, `format`, `minify` | boolean | Write changes back to the input file.         |
+| Opção                    | Aplicável a                         | Tipo     | Descrição                                                      |
+| ------------------------ | ----------------------------------- | -------- | -------------------------------------------------------------- |
+| `--file <path>`          | maioria das ações                   | string   | Lê JSON de um arquivo.                                         |
+| `--value <json>`         | maioria das ações                   | string   | Lê JSON informado diretamente.                                 |
+| `--path <dot.path>`      | `get`, `set`, `delete`              | string   | Caminho JSON no qual realizar a operação.                      |
+| `--set-value <json>`     | `set`                               | string   | Novo valor JSON para o caminho.                                |
+| `--indent <n>`           | `format`                            | inteiro  | Tamanho da indentação para facilitar a leitura.                |
+| `--sort-keys`            | `format`                            | booleano | Ordena recursivamente as chaves dos objetos antes da exibição. |
+| `--left <path-or-json>`  | `diff`                              | string   | Caminho do arquivo JSON ou valor JSON da esquerda.             |
+| `--right <path-or-json>` | `diff`                              | string   | Caminho do arquivo JSON ou valor JSON da direita.              |
+| `--in-place`             | `set`, `delete`, `format`, `minify` | booleano | Grava as alterações de volta no arquivo de entrada.            |
 
-## Notes
+## Observações
 
-- `--in-place` requires `--file` because inline JSON cannot be overwritten.
-- `merge` accepts multiple `--file` paths and/or multiple `--value` JSON strings in the same command.
-- `brutils json --help` shows examples and usage for the whole module.
+- `--in-place` exige `--file`, pois um JSON informado diretamente não pode ser sobrescrito.
+- `merge` aceita vários caminhos `--file` e/ou várias strings JSON `--value` no mesmo comando.
+- `brutils json --help` exibe exemplos e instruções de uso de todo o módulo.

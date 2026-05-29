@@ -1,12 +1,10 @@
 # DATE
 
-> Official interface: use the `brutils` CLI commands shown below.
+## Visão geral
 
-## Overview
+O módulo `date` fornece utilitários rápidos para formatação, análise, operações aritméticas, conversão Unix e exibição em fusos horários.
 
-The `date` module provides quick helpers for formatting, parsing, arithmetic, unix conversion and time zone rendering.
-
-## CLI Commands
+## Comandos da CLI
 
 ```bash
 brutils date now
@@ -20,34 +18,34 @@ brutils date unix 1704067200
 brutils date tz --from 2024-01-01T12:00:00Z --to America/Sao_Paulo
 ```
 
-## Actions
+## Ações
 
-| Action   | Usage                                                                                        | Description                                         |
-| -------- | -------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| `now`    | `brutils date now`                                                                           | Print the current date/time snapshot.               |
-| `format` | `brutils date format --date <value> --pattern <value>`                                       | Format a date using a token pattern.                |
-| `parse`  | `brutils date parse --date <value>`                                                          | Parse a date string and return normalized metadata. |
-| `add`    | `brutils date add --date <value> [--days <n>] [--hours <n>] [--minutes <n>] [--seconds <n>]` | Add time to a date.                                 |
-| `sub`    | `brutils date sub --date <value> [--days <n>] [--hours <n>] [--minutes <n>] [--seconds <n>]` | Subtract time from a date.                          |
-| `diff`   | `brutils date diff --from <value> --to <value> [--unit <name>]`                              | Calculate the difference between two dates.         |
-| `unix`   | `brutils date unix [value] [--date <value>]`                                                 | Convert to or from Unix timestamps.                 |
-| `tz`     | `brutils date tz --from <value> --to <value>`                                                | Render a date/time in a target IANA time zone.      |
+| Ação     | Uso                                                                                          | Descrição                                                    |
+| -------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| `now`    | `brutils date now`                                                                           | Exibe um registro da data e hora atuais.                     |
+| `format` | `brutils date format --date <value> --pattern <value>`                                       | Formata uma data usando um padrão de tokens.                 |
+| `parse`  | `brutils date parse --date <value>`                                                          | Analisa uma string de data e retorna metadados normalizados. |
+| `add`    | `brutils date add --date <value> [--days <n>] [--hours <n>] [--minutes <n>] [--seconds <n>]` | Adiciona tempo a uma data.                                   |
+| `sub`    | `brutils date sub --date <value> [--days <n>] [--hours <n>] [--minutes <n>] [--seconds <n>]` | Subtrai tempo de uma data.                                   |
+| `diff`   | `brutils date diff --from <value> --to <value> [--unit <name>]`                              | Calcula a diferença entre duas datas.                        |
+| `unix`   | `brutils date unix [value] [--date <value>]`                                                 | Converte para timestamps Unix ou a partir deles.             |
+| `tz`     | `brutils date tz --from <value> --to <value>`                                                | Exibe uma data e hora em um fuso horário IANA de destino.    |
 
-## Flags
+## Opções
 
-| Flag                | Applies to   | Type    | Description                                         |
-| ------------------- | ------------ | ------- | --------------------------------------------------- |
-| `--date <value>`    | most actions | string  | Input date/time.                                    |
-| `--from <value>`    | `diff`, `tz` | string  | Source date/time.                                   |
-| `--to <value>`      | `diff`, `tz` | string  | Target date/time or target time zone.               |
-| `--days <n>`        | `add`, `sub` | integer | Day delta.                                          |
-| `--hours <n>`       | `add`, `sub` | integer | Hour delta.                                         |
-| `--minutes <n>`     | `add`, `sub` | integer | Minute delta.                                       |
-| `--seconds <n>`     | `add`, `sub` | integer | Second delta.                                       |
-| `--pattern <value>` | `format`     | string  | Formatting pattern.                                 |
-| `--unit <name>`     | `diff`       | string  | Output unit: `seconds`, `minutes`, `hours`, `days`. |
+| Opção               | Aplicável a       | Tipo    | Descrição                                                |
+| ------------------- | ----------------- | ------- | -------------------------------------------------------- |
+| `--date <value>`    | maioria das ações | string  | Data e hora de entrada.                                  |
+| `--from <value>`    | `diff`, `tz`      | string  | Data e hora de origem.                                   |
+| `--to <value>`      | `diff`, `tz`      | string  | Data e hora de destino ou fuso horário de destino.       |
+| `--days <n>`        | `add`, `sub`      | inteiro | Variação em dias.                                        |
+| `--hours <n>`       | `add`, `sub`      | inteiro | Variação em horas.                                       |
+| `--minutes <n>`     | `add`, `sub`      | inteiro | Variação em minutos.                                     |
+| `--seconds <n>`     | `add`, `sub`      | inteiro | Variação em segundos.                                    |
+| `--pattern <value>` | `format`          | string  | Padrão de formatação.                                    |
+| `--unit <name>`     | `diff`            | string  | Unidade de saída: `seconds`, `minutes`, `hours`, `days`. |
 
-## Notes
+## Observações
 
-- `format` currently supports `YYYY`, `MM`, `DD`, `HH`, `mm` and `ss` tokens.
-- `unix` accepts either a positional Unix value or `--date` for date-to-unix conversion.
+- `format` atualmente aceita os tokens `YYYY`, `MM`, `DD`, `HH`, `mm` e `ss`.
+- `unix` aceita um valor Unix posicional ou `--date` para conversão de data para Unix.
